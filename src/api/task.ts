@@ -8,3 +8,4 @@ const TASK_API = `${ BASE_API }/task`
 
 export const ADD_TASK = (data: TaskI): Promise<AjaxResponseI<string>> => ajax.post(TASK_API, data)
 export const VIEW_TASKS = (): Promise<AjaxResponseI<Array<Task>>> => ajax.get(TASK_API)
+export const DEL_TASK = (id: number): Promise<AjaxResponseI<any>> => ajax.delete(`${ TASK_API }/${ id }`)

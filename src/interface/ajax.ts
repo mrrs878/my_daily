@@ -1,6 +1,6 @@
 export interface AjaxResponseI<T> {
   data: T;
+  code: number;
   msg: string,
-  success: boolean,
   status: number
 }

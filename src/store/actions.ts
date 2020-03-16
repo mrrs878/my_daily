@@ -16,6 +16,9 @@ const taskActions: ActionTree<StateI, StateI> = {
     const tasks = [ ...state.tasks ]
     tasks[index] = payload
     commit('updateTasks', tasks)
+  },
+  updateTasks ({ commit, state }, payload) {
+    commit('updateTasks', payload)
   }
 }
 

@@ -1,0 +1,47 @@
+<template>
+  <van-tabbar v-model="active" @change="onTabbarChange" v-show="isFooter">
+    <van-tabbar-item name="task" icon="clock-o">任务</van-tabbar-item>
+    <van-tabbar-item name="habit" icon="award-o">习惯</van-tabbar-item>
+    <van-tabbar-item name="profile" icon="user-o">我的</van-tabbar-item>
+  </van-tabbar>
+</template>
+
+<script lang="ts">
+import Vue from 'vue'
+import app from '@/main'
+import { TabbarItem, Tabbar } from 'vant'
+import { ROUTES_MAP } from '@/router'
+import layout from '@/layout'
+
+enum FOOTER_ROUTES {
+  task = 'task',
+  taskDetail = 'taskDetail'
+}
+
+export default Vue.extend({
+  name: 'mFooter',
+  data () {
+    return {
+      active: 'task'
+    }
+  },
+  methods: {
+    onTabbarChange (e: FOOTER_ROUTES) {
+      const path = ROUTES_MAP[e]
+      if (!path) app.$router.push(ROUTES_MAP.notFound)
+      else if (app.$route.path !== path) app.$router.push(ROUTES_MAP[e])
+    }
+  },
+  computed: {
+    isFooter () {
+      return layout.FOOTER_PAGES.includes(this.$route.path)
+    }
+  },
+  components: {
+    'van-tabbar': Tabbar,
+    'van-tabbar-item': TabbarItem
+  }
+})
+</script>
+
+<style scoped lang="less"></style>

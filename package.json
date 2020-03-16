@@ -9,8 +9,11 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "core-js": "^3.6.4",
     "register-service-worker": "^1.6.2",
+    "vant": "^2.5.5",
+    "vconsole": "^3.3.4",
     "vue": "^2.6.11",
     "vue-router": "^3.1.5",
     "vuex": "^3.1.2"
@@ -36,7 +39,10 @@
     "eslint-plugin-vue": "^6.1.2",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
+    "ts-import-plugin": "^1.6.5",
     "typescript": "~3.7.5",
-    "vue-template-compiler": "^2.6.11"
+    "vue-eslint-parser": "^7.0.0",
+    "vue-template-compiler": "^2.6.11",
+    "webpack-merge": "^4.2.2"
   }
 }

@@ -730,7 +730,7 @@
     levenary "^1.1.1"
     semver "^5.5.0"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.3.4", "@babel/runtime@^7.8.4":
+"@babel/runtime@7.x", "@babel/runtime@^7.0.0", "@babel/runtime@^7.3.4", "@babel/runtime@^7.8.4":
   version "7.8.7"
   resolved "https://registry.npm.taobao.org/@babel/runtime/download/@babel/runtime-7.8.7.tgz?cache=0&sync_timestamp=1583373757080&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40babel%2Fruntime%2Fdownload%2F%40babel%2Fruntime-7.8.7.tgz#8fefce9802db54881ba59f90bb28719b4996324d"
   integrity sha1-j+/OmALbVIgbpZ+Quyhxm0mWMk0=
@@ -1172,6 +1172,11 @@
     lodash "^4.17.15"
     semver "^6.3.0"
     tsutils "^3.17.1"
+
+"@vant/icons@1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@vant/icons/-/icons-1.2.1.tgz#309fecb97a4989866f045ce676b545c454701c8f"
+  integrity sha512-5ivsKQR4ySbdBW5UPoQDVqO6rdc1um3rvq/0VL+ZSA7Y3MdBQ3E4/NL0hoAY5/sZZeYfIDKEP21gpjUzdeEDQQ==
 
 "@vue/babel-helper-vue-jsx-merge-props@^1.0.0":
   version "1.0.0"
@@ -1976,6 +1981,13 @@ aws4@^1.8.0:
   version "1.9.1"
   resolved "https://registry.npm.taobao.org/aws4/download/aws4-1.9.1.tgz?cache=0&sync_timestamp=1578959055063&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Faws4%2Fdownload%2Faws4-1.9.1.tgz#7e33d8f7d449b3f673cd72deb9abdc552dbe528e"
   integrity sha1-fjPY99RJs/ZzzXLeuavcVS2+Uo4=
+
+axios@^0.19.2:
+  version "0.19.2"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
+  integrity sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
+  dependencies:
+    follow-redirects "1.5.10"
 
 babel-code-frame@^6.22.0, babel-code-frame@^6.26.0:
   version "6.26.0"
@@ -3354,6 +3366,13 @@ debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.8, debug@^2.6.9:
   dependencies:
     ms "2.0.0"
 
+debug@=3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
+  integrity sha512-OX8XqP7/1a9cqkxYw2yXss15f26NKWBpDXQd0/uK/KPqdQhxbPa994hnzjcE2VqQpDslf55723cKPUOGSmMY3g==
+  dependencies:
+    ms "2.0.0"
+
 debug@^3.0.0, debug@^3.1.1, debug@^3.2.5:
   version "3.2.6"
   resolved "https://registry.npm.taobao.org/debug/download/debug-3.2.6.tgz#e83d17de16d8a7efb7717edbe5fb10135eee629b"
@@ -4482,6 +4501,13 @@ flush-write-stream@^1.0.0:
   dependencies:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
+
+follow-redirects@1.5.10:
+  version "1.5.10"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.10.tgz#7b7a9f9aea2fdff36786a94ff643ed07f4ff5e2a"
+  integrity sha512-0V5l4Cizzvqt5D44aTXbFZz+FtyXV1vrDN6qrelxtfYQKW0KO0W2T/hkE8xvGa/540LkZlkaUjO4ailYTFtHVQ==
+  dependencies:
+    debug "=3.1.0"
 
 follow-redirects@^1.0.0:
   version "1.10.0"
@@ -9603,6 +9629,13 @@ tryer@^1.0.1:
   resolved "https://registry.npm.taobao.org/tryer/download/tryer-1.0.1.tgz#f2c85406800b9b0f74c9f7465b81eaad241252f8"
   integrity sha1-8shUBoALmw90yfdGW4HqrSQSUvg=
 
+ts-import-plugin@^1.6.5:
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/ts-import-plugin/-/ts-import-plugin-1.6.5.tgz#4f3a109ec5da1c2e85770d133723e1ec3a7bd23b"
+  integrity sha512-RovlYnd0gJW8N6AV2CJR7DCES4cK/yyCYUoM/4Vy7LHyq+osneEa4pGNaODqb9YMgyZO4HGO67Ikwv8hvArRlw==
+  dependencies:
+    tslib "^1.11.1"
+
 ts-jest@^24.2.0:
   version "24.3.0"
   resolved "https://registry.npm.taobao.org/ts-jest/download/ts-jest-24.3.0.tgz#b97814e3eab359ea840a1ac112deae68aa440869"
@@ -9645,7 +9678,7 @@ tsconfig@^7.0.0:
     strip-bom "^3.0.0"
     strip-json-comments "^2.0.0"
 
-tslib@^1.10.0, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
+tslib@^1.10.0, tslib@^1.11.1, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.11.1"
   resolved "https://registry.npm.taobao.org/tslib/download/tslib-1.11.1.tgz#eb15d128827fbee2841549e171f45ed338ac7e35"
   integrity sha1-6xXRKIJ/vuKEFUnhcfRe0zisfjU=
@@ -9945,10 +9978,25 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
 
+vant@^2.5.5:
+  version "2.5.5"
+  resolved "https://registry.yarnpkg.com/vant/-/vant-2.5.5.tgz#4484e4224127a88a47147b35ab52a91bacc2e939"
+  integrity sha512-w7APepClXcEMFJvvYsJkNDWCCb+a5SR9eAMMIYM/1VCwn7r7AxoAtJSCaZsmw3vhSxnMSnM/+Ftz7t3o0eoK4Q==
+  dependencies:
+    "@babel/runtime" "7.x"
+    "@vant/icons" "1.2.1"
+    "@vue/babel-helper-vue-jsx-merge-props" "^1.0.0"
+    vue-lazyload "1.2.3"
+
 vary@~1.1.2:
   version "1.1.2"
   resolved "https://registry.npm.taobao.org/vary/download/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
+
+vconsole@^3.3.4:
+  version "3.3.4"
+  resolved "https://registry.yarnpkg.com/vconsole/-/vconsole-3.3.4.tgz#a7dacd8887b3d3e902e8d18425cda56c34e77f51"
+  integrity sha512-9yihsic96NPoMLQx/lCQwH9d89H0bbMW3LZPzo/t4yGQcS1X+vTCe9OHm1XSH7WNxzGDmcSwBiKLsFGwvJpQBg==
 
 vendors@^1.0.0:
   version "1.0.4"
@@ -9971,8 +10019,8 @@ vm-browserify@^1.0.1:
 
 vue-eslint-parser@^7.0.0:
   version "7.0.0"
-  resolved "https://registry.npm.taobao.org/vue-eslint-parser/download/vue-eslint-parser-7.0.0.tgz#a4ed2669f87179dedd06afdd8736acbb3a3864d6"
-  integrity sha1-pO0mafhxed7dBq/dhzasuzo4ZNY=
+  resolved "https://registry.yarnpkg.com/vue-eslint-parser/-/vue-eslint-parser-7.0.0.tgz#a4ed2669f87179dedd06afdd8736acbb3a3864d6"
+  integrity sha512-yR0dLxsTT7JfD2YQo9BhnQ6bUTLsZouuzt9SKRP7XNaZJV459gvlsJo4vT2nhZ/2dH9j3c53bIx9dnqU2prM9g==
   dependencies:
     debug "^4.1.1"
     eslint-scope "^5.0.0"
@@ -10001,6 +10049,11 @@ vue-jest@^3.0.5:
     source-map "^0.5.6"
     tsconfig "^7.0.0"
     vue-template-es2015-compiler "^1.6.0"
+
+vue-lazyload@1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/vue-lazyload/-/vue-lazyload-1.2.3.tgz#901f9ec15c7e6ca78781a2bae4a343686bdedb2c"
+  integrity sha512-DC0ZwxanbRhx79tlA3zY5OYJkH8FYp3WBAnAJbrcuoS8eye1P73rcgAZhyxFSPUluJUTelMB+i/+VkNU/qVm7g==
 
 vue-loader@^15.8.3:
   version "15.9.0"
@@ -10187,8 +10240,8 @@ webpack-log@^2.0.0:
 
 webpack-merge@^4.2.2:
   version "4.2.2"
-  resolved "https://registry.npm.taobao.org/webpack-merge/download/webpack-merge-4.2.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fwebpack-merge%2Fdownload%2Fwebpack-merge-4.2.2.tgz#a27c52ea783d1398afd2087f547d7b9d2f43634d"
-  integrity sha1-onxS6ng9E5iv0gh/VH17nS9DY00=
+  resolved "https://registry.yarnpkg.com/webpack-merge/-/webpack-merge-4.2.2.tgz#a27c52ea783d1398afd2087f547d7b9d2f43634d"
+  integrity sha512-TUE1UGoTX2Cd42j3krGYqObZbOD+xF7u28WB7tfUordytSjbWTIjK/8V0amkBfTYN4/pB/GIDlJZZ657BGG19g==
   dependencies:
     lodash "^4.17.15"
 

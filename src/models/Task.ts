@@ -8,9 +8,10 @@ class Task implements TaskI {
   status: TASK_STATUS;
   title: string;
   CreatedAt: string;
+  DeletedAt: string;
   ID: number;
 
-  constructor(alarmTime: number, detail: string, label: Array<string>, status: TASK_STATUS, title: string, id = -1, createAt = '') {
+  constructor(alarmTime: number, detail: string, label: Array<string>, status: TASK_STATUS, title: string, id = -1, createAt = '', DeletedAt='') {
     this.alarmTime = alarmTime;
     this.detail = detail;
     this.label = label;
@@ -18,6 +19,7 @@ class Task implements TaskI {
     this.title = title;
     this.ID = id
     this.CreatedAt = createAt
+    this.DeletedAt = DeletedAt
   }
 
   validate (...params: Array<any>) {

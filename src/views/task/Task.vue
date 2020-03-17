@@ -8,7 +8,7 @@
           <van-icon slot="icon" name="thumb-circle-o" size="16" class="task-status-icon" :class="{'active': item.status === 2}" />
         </van-cell>
         <template slot="right">
-          <van-button square type="danger" text="删除" @click="onSwipeRightClick('delete', item.ID)" />
+          <van-button square type="danger" text="取消" @click="onSwipeRightClick('delete', item.ID)" />
           <van-button square type="info" text="进行中" @click="onSwipeRightClick('running', item.ID)" />
           <van-button square type="primary" text="已完成" @click="onSwipeRightClick('complete', item.ID)" />
         </template>
@@ -23,6 +23,7 @@
 import Vue from 'vue'
 import { Panel, SwipeCell, PullRefresh, Toast, Calendar, Dialog } from 'vant'
 import TaskModule from '@/module/task'
+import { TASK_STATUS } from '@/constant'
 import { ROUTES_MAP } from '@/router'
 import { mapState } from 'vuex'
 
@@ -35,20 +36,28 @@ enum SWIPE_RIGHT_ACTIONS {
 
 const TASK_ACTION_HANDLERS = {
   async [SWIPE_RIGHT_ACTIONS.delete] (id: number) {
-    console.log('delete', id)
     try {
-      await Dialog.confirm({ title: '确定删除该任务吗?' })
-      await TaskModule.deleteTask(id)
+      await Dialog.confirm({ title: '确定取消该任务吗?' })
+      await TaskModule.updateTaskStatus(id, TASK_STATUS.cancel)
     } catch (e) {
       console.log(e)
-      Toast(e.message)
     }
   },
-  [SWIPE_RIGHT_ACTIONS.running] (id: number) {
-    console.log('running', id)
+  async [SWIPE_RIGHT_ACTIONS.running] (id: number) {
+    try {
+      await Dialog.confirm({ title: '确定任务在进行中吗?' })
+      await TaskModule.updateTaskStatus(id, TASK_STATUS.running)
+    } catch (e) {
+      console.log(e)
+    }
   },
-  [SWIPE_RIGHT_ACTIONS.complete] (id: number) {
-    console.log('complete', id)
+  async [SWIPE_RIGHT_ACTIONS.complete] (id: number) {
+    try {
+      await Dialog.confirm({ title: '确定已经完成该任务了吗?' })
+      await TaskModule.updateTaskStatus(id, TASK_STATUS.complete)
+    } catch (e) {
+      console.log(e)
+    }
   }
 }
 

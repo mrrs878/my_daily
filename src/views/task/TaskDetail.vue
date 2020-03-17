@@ -1,16 +1,21 @@
 <template>
   <div class="container">
     <van-nav-bar left-text="任务详情" left-arrow @click-left="onNavBarClickLeft" />
-    <van-panel :title="task.title" status="状态">
+    <van-panel :title="task.title" :status="TASK_STATUS_VIEW[task.status]">
       <div class="">
         <div class="panel-label">
           <van-tag mark type="primary" v-for="(item, index) in task.label" :key="index">{{ item }}</van-tag>
         </div>
-        {{ task.description }}
+        <br>
+        {{ task.detail }}
       </div>
       <div slot="footer" class="panel-footer">
         <van-button size="small" type="danger">删除</van-button>
-        <van-button size="small" type="primary">完成</van-button>
+        <div v-if="!task.DeletedAt">
+          <van-button size="small" type="warning" @click="onStatusActionClick(TASK_STATUS.cancel)" v-show="task.status !== TASK_STATUS.cancel">取消</van-button>
+          <van-button size="small" type="info" @click="onStatusActionClick(TASK_STATUS.running)" v-show="task.status !== TASK_STATUS.running">进行中</van-button>
+          <van-button size="small" type="primary" @click="onStatusActionClick(TASK_STATUS.complete)" v-show="task.status !== TASK_STATUS.complete">完成</van-button>
+        </div>
       </div>
     </van-panel>
   </div>
@@ -20,12 +25,22 @@
 import Vue from 'vue'
 import { Panel, Tag } from 'vant'
 import { mapState } from 'vuex'
+import Task from '@/models/Task'
+import TaskModule from '@/module/task'
+import { TASK_STATUS_VIEW, TASK_STATUS } from '@/constant'
 
 export default Vue.extend({
   name: 'taskDetail',
   data () {
     return {
-      task: { label: '', title: '', description: '' }
+      TASK_STATUS_VIEW,
+      TASK_STATUS,
+      task: new Task(new Date().getTime(), '', [], TASK_STATUS.pending, '')
+    }
+  },
+  methods: {
+    onStatusActionClick (status: TASK_STATUS) {
+      TaskModule.updateTaskStatus(this.task.ID, status)
     }
   },
   mounted (): void {
@@ -54,8 +69,12 @@ export default Vue.extend({
   .panel-footer {
     display: flex;
     justify-content: flex-end;
-    .van-button:nth-child(1) {
+    margin-top: 1rem;
+    .van-button {
       margin-right: 0.2rem;
+      &:last-child {
+        margin-right: 0;
+      }
     }
   }
   .panel-label {

@@ -34,7 +34,6 @@ import { TASK_STATUS } from '@/constant'
 import ToastError from '@/models/ToastError'
 
 const CURRENT_DATE_TIME = new Date(`${new Date().toLocaleDateString()} 00:00:00`)
-const task = new Task(CURRENT_DATE_TIME.getTime(), '', [], TASK_STATUS.pending, '')
 enum DATE_TIME_TYPE {
   year = 'year',
   month = 'month',
@@ -56,7 +55,7 @@ export default Vue.extend({
     return {
       isAlarmPopup: false,
       isLabelPopup: false,
-      task,
+      task: new Task(CURRENT_DATE_TIME.getTime(), '', [], TASK_STATUS.pending, ''),
       taskLabel: '',
       currentDateTime: CURRENT_DATE_TIME,
       minDateTime: CURRENT_DATE_TIME,

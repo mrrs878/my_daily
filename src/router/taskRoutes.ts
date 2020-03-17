@@ -10,7 +10,7 @@ const TASK_ROUTES_MAP = {
   root: '/',
   notFound: '/404',
   task: BASE_PATH,
-  taskDetail: `${BASE_PATH}/index`,
+  taskDetail: `${BASE_PATH}/`,
   addTask: `${BASE_PATH}/add`
 }
 

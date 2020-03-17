@@ -2,9 +2,9 @@
   <div class="container footer">
     <p class="time" @click="onDateTimeClick">{{ dateTime }}</p>
     <van-pull-refresh v-model="isLoading" @refresh="onTaskRefresh">
-      <van-swipe-cell class="task-cell" v-for="item in tasks" :key="item.ID"
+      <van-swipe-cell class="task-cell" v-for="(item, index) in tasks" :key="item.ID"
                       @open="onSwipeCellOpen" @close="onSwipeCellClose">
-        <van-cell :title="item.title" :value="item.detail" center clickable @click="onTaskClick(item.ID)">
+        <van-cell :title="item.title" :value="item.detail" center clickable @click="onTaskClick(index)">
           <van-icon slot="icon" name="thumb-circle-o" size="16" class="task-status-icon" :class="{'active': item.status === 2}" />
         </van-cell>
         <template slot="right">

@@ -6,8 +6,8 @@ import { RES_CODE } from '@/constant'
 import ToastError from '@/models/ToastError'
 import { ACTIONS_E } from '@/store/actions'
 
-namespace Task {
-  export async function addTask (data: TaskI): Promise<ModuleRes> {
+export default {
+  async addTask (data: TaskI): Promise<ModuleRes> {
     try {
       const res = await ADD_TASK(data)
       if (res.code === RES_CODE.success) {
@@ -18,8 +18,8 @@ namespace Task {
       console.log(e)
       return Promise.resolve({ code: RES_CODE.fail, msg: '' })
     }
-  }
-  export async function viewTasks (): Promise<ModuleRes> {
+  },
+  async viewTasks (): Promise<ModuleRes> {
     try {
       const res = await VIEW_TASKS()
       if (res.code === RES_CODE.success) {
@@ -30,8 +30,8 @@ namespace Task {
       console.log(e)
       return Promise.resolve({ code: RES_CODE.fail, msg: '' })
     }
-  }
-  export async function deleteTask (id: number) {
+  },
+  async deleteTask (id: number) {
     try {
       const res = await DEL_TASK(id)
       Toast(res.msg)
@@ -41,8 +41,8 @@ namespace Task {
       if (e instanceof ToastError) Toast(e.msg)
       console.log(e)
     }
-  }
-  export async function refreshTask (id: number): Promise<ModuleRes> {
+  },
+  async refreshTask (id: number): Promise<ModuleRes> {
     try {
       const res = await VIEW_TASK(id)
       if (res.code === RES_CODE.success) {
@@ -53,8 +53,8 @@ namespace Task {
       console.log(e)
       return Promise.resolve({ code: RES_CODE.fail, msg: '' })
     }
-  }
-  export async function updateTaskStatus (id: number, status: number): Promise<ModuleRes> {
+  },
+  async updateTaskStatus (id: number, status: number): Promise<ModuleRes> {
     try {
       const res = await UPDATE_TASK({ id, status })
       if (res.code === RES_CODE.success) {
@@ -67,5 +67,3 @@ namespace Task {
     }
   }
 }
-
-export default Task

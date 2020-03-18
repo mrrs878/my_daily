@@ -1,5 +1,4 @@
-import axios, { AxiosResponse } from 'axios'
-import { AjaxResponseI } from '@/interface/ajax'
+import axios from 'axios'
 
 const instance = axios.create({ timeout: 12000 })
 instance.interceptors.request.use(config => {

@@ -50,7 +50,7 @@ const clickProxy: DirectiveOptions = {
 }
 
 const longPress: DirectiveOptions = {
-  bind (el, options) {
+  bind (el) {
     el.ontouchstart = () => {
       console.log(1)
     }

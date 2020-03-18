@@ -9,6 +9,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@types/workbox-core": "^4.3.0",
     "axios": "^0.19.2",
     "core-js": "^3.6.4",
     "ramda": "^0.27.0",

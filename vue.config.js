@@ -3,6 +3,7 @@ const merge = require('webpack-merge')
 const tsImportPluginFactory = require('ts-import-plugin')
 
 module.exports = {
+  parallel: false,
   lintOnSave: true,
   chainWebpack: config => {
     config.module
@@ -28,14 +29,14 @@ module.exports = {
       })
   },
   pwa: {
-    name: 'My App',
+    name: 'MyDaily',
     themeColor: '#4DBA87',
     msTileColor: '#000000',
     appleMobileWebAppCapable: 'yes',
     appleMobileWebAppStatusBarStyle: 'black',
     workboxPluginMode: 'InjectManifest',
     workboxOptions: {
-      swSrc: 'dev/sw.js'
+      swSrc: 'src/service-worker.js'
     }
   }
 }

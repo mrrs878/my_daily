@@ -9,23 +9,25 @@ class Task implements TaskI {
   title: string;
   CreatedAt: string;
   DeletedAt: string;
+  UpdatedAt: string;
   ID: number;
 
-  constructor(alarmTime: number, detail: string, label: Array<string>, status: TASK_STATUS, title: string, id = -1, createAt = '', DeletedAt='') {
-    this.alarmTime = alarmTime;
-    this.detail = detail;
-    this.label = label;
-    this.status = status;
-    this.title = title;
+  constructor (alarmTime: number, detail: string, label: Array<string>, status: TASK_STATUS, title: string, id = -1, createAt = '', deletedAt = '', updatedAt = '') {
+    this.alarmTime = alarmTime
+    this.detail = detail
+    this.label = label
+    this.status = status
+    this.title = title
     this.ID = id
     this.CreatedAt = createAt
-    this.DeletedAt = DeletedAt
+    this.DeletedAt = deletedAt
+    this.UpdatedAt = updatedAt
   }
 
   validate (...params: Array<any>) {
     if (!this.title) return '请输入任务标题'
     if (!this.detail) return '请输入任务详情'
-    if (typeof params[0] !== "number") return '请传入正确的时间'
+    if (typeof params[0] !== 'number') return '请传入正确的时间'
     if (this.alarmTime === params[0]) return '请选择提醒时间'
     return ''
   }

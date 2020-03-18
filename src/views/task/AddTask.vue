@@ -1,9 +1,10 @@
+import { RES_CODE } from '@/constant'
 import { TASK_STATUS } from '@/constant'
 <template>
   <div class="container">
     <van-nav-bar left-text="添加任务" left-arrow @click-left="onNavBarClickLeft" />
     <van-field v-model="task.title" clearable label="任务名称" placeholder="请输入任务名称" @input="onTaskTitleInput" />
-    <van-field v-model="task.detail" clearable label="任务详情" placeholder="请输入任务详情" @input="onTaskDetailInput" />
+    <van-field v-model="task.detail" clearable label="任务详情" autosize type="textarea" placeholder="请输入任务详情" @input="onTaskDetailInput" />
     <van-cell title="提醒时间" :value="new Date(task.alarmTime).toLocaleString()" is-link @click="onTaskAlarmClick" />
     <van-cell title="任务标签" center value-class="task-label-value">
       <van-icon slot="right-icon" name="add-o" :size="20" @click="onAddTaskLabelClick" />
@@ -30,7 +31,7 @@ import Vue from 'vue'
 import { DatetimePicker, Tag, Toast } from 'vant'
 import TaskModule from '@/module/task'
 import Task from '@/models/Task'
-import { TASK_STATUS } from '@/constant'
+import { RES_CODE, TASK_STATUS } from '@/constant'
 import ToastError from '@/models/ToastError'
 
 const CURRENT_DATE_TIME = new Date(`${new Date().toLocaleDateString()} 00:00:00`)
@@ -71,7 +72,9 @@ export default Vue.extend({
         const label = this.task?.label?.join('#')
         const msg = this.task?.validate(CURRENT_DATE_TIME.getTime())
         if (msg) throw new ToastError(msg)
-        await TaskModule.addTask(Object.assign({}, this.task, { label }))
+        const res = await TaskModule.addTask(Object.assign({}, this.task, { label }))
+        Toast(res.code === RES_CODE.success ? '添加成功' : res.msg)
+        if (res.code === RES_CODE.success) setTimeout(() => this.$router.back(), 2000)
       } catch (e) {
         console.log(e)
         if (e instanceof ToastError) Toast(e.msg)

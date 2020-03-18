@@ -1,8 +1,8 @@
 import ToastErrorI from '@/interface/toastError'
 
-class ToastError extends Error implements ToastErrorI{
+class ToastError extends Error implements ToastErrorI {
   msg: string;
-  constructor(msg: string) {
+  constructor (msg: string) {
     super(msg)
     this.msg = msg
   }

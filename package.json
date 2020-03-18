@@ -5,12 +5,13 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "axios": "^0.19.2",
     "core-js": "^3.6.4",
+    "ramda": "^0.27.0",
     "register-service-worker": "^1.6.2",
     "vant": "^2.5.5",
     "vconsole": "^3.3.4",
@@ -20,11 +21,12 @@
   },
   "devDependencies": {
     "@types/jest": "^24.0.19",
+    "@types/ramda": "^0.26.44",
     "@typescript-eslint/eslint-plugin": "^2.18.0",
     "@typescript-eslint/parser": "^2.18.0",
     "@vue/cli-plugin-babel": "^4.2.0",
     "@vue/cli-plugin-eslint": "^4.2.0",
-    "@vue/cli-plugin-pwa": "^4.2.0",
+    "@vue/cli-plugin-pwa": "~4.2.0",
     "@vue/cli-plugin-typescript": "^4.2.0",
     "@vue/cli-plugin-unit-jest": "^4.2.0",
     "@vue/cli-service": "^4.2.0",

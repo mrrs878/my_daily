@@ -2,17 +2,23 @@
   <div class="container footer">
     <p class="time" @click="onDateTimeClick">{{ dateTime }}</p>
     <van-pull-refresh v-model="isLoading" @refresh="onTaskRefresh">
-      <van-swipe-cell class="task-cell" v-for="(item, index) in tasks" :key="item.ID"
-                      @open="onSwipeCellOpen" @close="onSwipeCellClose">
-        <van-cell :title="item.title" :value="item.detail" center clickable @click="onTaskClick(index)">
-          <van-icon slot="icon" name="thumb-circle-o" size="16" class="task-status-icon" :class="{'active': item.status === 2}" />
-        </van-cell>
-        <template slot="right">
-          <van-button square type="danger" text="取消" @click="onSwipeRightClick('delete', item.ID)" />
-          <van-button square type="info" text="进行中" @click="onSwipeRightClick('running', item.ID)" />
-          <van-button square type="primary" text="已完成" @click="onSwipeRightClick('complete', item.ID)" />
-        </template>
-      </van-swipe-cell>
+      <div style="overflow: scroll">
+        <van-swipe-cell class="task-cell" v-for="(item, index) in tasks" :key="item.ID"
+                        :disabled="item.status === TASK_STATUS.cancel || item.status === TASK_STATUS.failed"
+                        @open="onSwipeCellOpen" @close="onSwipeCellClose">
+          <van-cell :title="item.title" :value="item.detail" center clickable @click="onTaskClick(index)">
+            <van-icon slot="icon" name="thumb-circle-o" size="16" class="task-status-icon" :class="{'active': item.status === 2}" />
+          </van-cell>
+          <template slot="right">
+            <van-button square type="danger" text="取消" v-if="item.status !== TASK_STATUS.cancel"
+                        @click="onSwipeRightClick(TASK_STATUS.cancel, item.ID)" />
+            <van-button square type="info" text="进行中" v-if="item.status !== TASK_STATUS.running"
+                        @click="onSwipeRightClick(TASK_STATUS.running, item.ID)" />
+            <van-button square type="primary" text="已完成" v-if="item.status !== TASK_STATUS.complete"
+                        @click="onSwipeRightClick(TASK_STATUS.complete, item.ID)" />
+          </template>
+        </van-swipe-cell>
+      </div>
     </van-pull-refresh>
     <van-calendar v-model="isCalendar" @confirm="onCalendarConfirm" :default-date="defaultDate" :min-date="minDate" :max-date="maxDate" />
     <van-button type="primary" class="position-bottom footer" size="large" @click="onAddTaskClick">添加任务</van-button>
@@ -23,43 +29,11 @@
 import Vue from 'vue'
 import { Panel, SwipeCell, PullRefresh, Toast, Calendar, Dialog } from 'vant'
 import TaskModule from '@/module/task'
-import { TASK_STATUS } from '@/constant'
+import { RES_CODE, TASK_STATUS, UPDATE_MSG } from '@/constant'
 import { ROUTES_MAP } from '@/router'
 import { mapState } from 'vuex'
 
 const DATE = new Date()
-enum SWIPE_RIGHT_ACTIONS {
-  delete = 'delete',
-  running = 'running',
-  complete = 'complete'
-}
-
-const TASK_ACTION_HANDLERS = {
-  async [SWIPE_RIGHT_ACTIONS.delete] (id: number) {
-    try {
-      await Dialog.confirm({ title: '确定取消该任务吗?' })
-      await TaskModule.updateTaskStatus(id, TASK_STATUS.cancel)
-    } catch (e) {
-      console.log(e)
-    }
-  },
-  async [SWIPE_RIGHT_ACTIONS.running] (id: number) {
-    try {
-      await Dialog.confirm({ title: '确定任务在进行中吗?' })
-      await TaskModule.updateTaskStatus(id, TASK_STATUS.running)
-    } catch (e) {
-      console.log(e)
-    }
-  },
-  async [SWIPE_RIGHT_ACTIONS.complete] (id: number) {
-    try {
-      await Dialog.confirm({ title: '确定已经完成该任务了吗?' })
-      await TaskModule.updateTaskStatus(id, TASK_STATUS.complete)
-    } catch (e) {
-      console.log(e)
-    }
-  }
-}
 
 export default Vue.extend({
   name: 'task',
@@ -72,15 +46,15 @@ export default Vue.extend({
       minDate: new Date(DATE.getTime() - 1000 * 60 * 60 * 24 * 30),
       maxDate: DATE,
       isCalendar: false,
-      isSwiping: false
+      isSwiping: false,
+      TASK_STATUS
     }
   },
   methods: {
-    onTaskRefresh () {
-      setTimeout(() => {
-        Toast('刷新成功')
-        this.isLoading = false
-      }, 1000)
+    async onTaskRefresh () {
+      const res = await TaskModule.viewTasks()
+      Toast(res.code === RES_CODE.success ? '刷新成功' : res.msg)
+      this.isLoading = false
     },
     onTaskClick (e: number) {
       if (this.isSwiping) {
@@ -104,8 +78,10 @@ export default Vue.extend({
     onAddTaskClick () {
       this.$router.push(ROUTES_MAP.addTask)
     },
-    onSwipeRightClick (type: SWIPE_RIGHT_ACTIONS, id: number) {
-      TASK_ACTION_HANDLERS[type](id)
+    async onSwipeRightClick (status: TASK_STATUS, id: number) {
+      await Dialog.confirm({ title: UPDATE_MSG[status] })
+      const res = await TaskModule.updateTaskStatus(id, status)
+      Toast(res.code === RES_CODE.success ? '更新成功' : res.msg)
     },
     initClock () {
       const timerId = setInterval(() => {
@@ -149,5 +125,9 @@ export default Vue.extend({
     &.active {
       color: #1683f0;
     }
+  }
+  .van-pull-refresh {
+    height: calc(100% - 2rem);
+    overflow: scroll;
   }
 </style>

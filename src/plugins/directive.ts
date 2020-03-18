@@ -1,22 +1,22 @@
-import {DirectiveOptions} from "vue";
+import { DirectiveOptions } from 'vue'
 
 const preload: DirectiveOptions = {
   inserted: function (el, options) {
     const realSrc = el.getAttribute('src') ?? ''
     const preSrc = options.value || require('../assets/img/loading.gif')
     el.setAttribute('src', preSrc)
-    let imgNode = new Image()
+    const imgNode = new Image()
     imgNode.onload = () => el.setAttribute('src', realSrc)
     imgNode.src = realSrc
   }
 }
 
-const lazy:DirectiveOptions = {
+const lazy: DirectiveOptions = {
   inserted: function (el, options) {
     const realSrc = el.getAttribute('src') ?? ''
-    const preSrc  = options.value || require('../assets/img/loading.gif')
+    const preSrc = options.value || require('../assets/img/loading.gif')
     el.setAttribute('src', preSrc)
-    let imgNode = new Image()
+    const imgNode = new Image()
     imgNode.onload = () => el.setAttribute('src', realSrc)
     const observer = new IntersectionObserver(changes => {
       changes.forEach(change => {
@@ -44,8 +44,8 @@ const touchEffect: DirectiveOptions = {
 
 const clickProxy: DirectiveOptions = {
   bind (el, options) {
-    let payload = typeof options.value.payload === 'object' ? JSON.stringify(options.value.payload) : options.value.payload
-    el.setAttribute(`data-${ options.value.key }`, payload)
+    const payload = typeof options.value.payload === 'object' ? JSON.stringify(options.value.payload) : options.value.payload
+    el.setAttribute(`data-${options.value.key}`, payload)
   }
 }
 

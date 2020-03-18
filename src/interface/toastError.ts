@@ -1,5 +1,5 @@
 interface ToastErrorI extends Error{
-  msg: string
+  msg: string;
 }
 
 export default ToastErrorI

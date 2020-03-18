@@ -1,4 +1,4 @@
-import axios, {AxiosResponse} from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import { AjaxResponseI } from '@/interface/ajax'
 
 const instance = axios.create({ timeout: 12000 })

@@ -1,5 +1,5 @@
-import {TaskI} from "@/interface/model";
+import { TaskI } from '@/interface/model'
 
 export interface StateI {
-  tasks: Array<TaskI>
+  tasks: Array<TaskI>;
 }

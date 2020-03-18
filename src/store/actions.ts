@@ -1,5 +1,5 @@
-import { ActionTree } from "vuex";
-import { StateI } from "@/interface/store";
+import { ActionTree } from 'vuex'
+import { StateI } from '@/interface/store'
 
 export enum ACTIONS_E {
   addTask = 'addTask',
@@ -10,7 +10,7 @@ export enum ACTIONS_E {
 
 const taskActions: ActionTree<StateI, StateI> = {
   [ACTIONS_E.addTask] ({ commit, state }, payload) {
-    const tasks = [ ...state.tasks ]
+    const tasks = [...state.tasks]
     tasks.push(payload)
     commit('updateTasks', tasks)
   },
@@ -20,7 +20,7 @@ const taskActions: ActionTree<StateI, StateI> = {
   },
   [ACTIONS_E.updateTask] ({ commit, state }, payload) {
     const index = state.tasks.findIndex(item => item.ID === payload.ID)
-    const tasks = [ ...state.tasks ]
+    const tasks = [...state.tasks]
     tasks[index] = payload
     commit('updateTasks', tasks)
   },

@@ -5,4 +5,4 @@ export interface AjaxResponseI<T> {
   status: number;
 }
 
-export type UpdateTaskStatusT = { id: number; status: number }
+export type UpdateTaskStatusReqT = { id: number; status: number }

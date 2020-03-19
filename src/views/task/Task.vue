@@ -1,6 +1,5 @@
 <template>
   <div class="container footer">
-    <p class="time" @click="onDateTimeClick">{{ dateTime }}</p>
     <van-pull-refresh v-model="isLoading" @refresh="onTaskRefresh">
       <div style="overflow: scroll">
         <van-swipe-cell class="task-cell" v-for="(item, index) in tasks" :key="item.ID"
@@ -27,7 +26,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { Panel, SwipeCell, PullRefresh, Toast, Calendar, Dialog } from 'vant'
+import { Panel, SwipeCell, Toast, Calendar, Dialog } from 'vant'
 import TaskModule from '@/module/task'
 import { RES_CODE, TASK_STATUS, UPDATE_MSG } from '@/constant'
 import { ROUTES_MAP } from '@/router'
@@ -41,7 +40,6 @@ export default Vue.extend({
     return {
       isLoading: false,
       timerId: 0,
-      dateTime: DATE.toLocaleString(),
       defaultDate: DATE,
       minDate: new Date(DATE.getTime() - 1000 * 60 * 60 * 24 * 30),
       maxDate: DATE,
@@ -83,14 +81,6 @@ export default Vue.extend({
       const res = await TaskModule.updateTaskStatus(id, status)
       Toast(res.code === RES_CODE.success ? '更新成功' : res.msg)
     },
-    initClock () {
-      const timerId = setInterval(() => {
-        this.dateTime = new Date().toLocaleString()
-      }, 1000)
-      this.$once('hook:beforeDestroy', function () {
-        clearInterval(timerId)
-      })
-    },
     async getTasks () {
       try {
         await TaskModule.viewTasks()
@@ -100,13 +90,11 @@ export default Vue.extend({
     }
   },
   created (): void {
-    this.initClock()
     this.getTasks()
   },
   components: {
     [Panel.name]: Panel,
     [SwipeCell.name]: SwipeCell,
-    [PullRefresh.name]: PullRefresh,
     [Calendar.name]: Calendar
   },
   computed: {
@@ -127,7 +115,7 @@ export default Vue.extend({
     }
   }
   .van-pull-refresh {
-    height: calc(100% - 2rem);
+    height: calc(100% - 1rem);
     overflow: scroll;
   }
 </style>

@@ -8,14 +8,21 @@
 <script lang="ts">
 import Vue from 'vue'
 import MFooter from '@/components/MFooter.vue'
+import userModule from '@/module/user'
 
 export default Vue.extend({
   name: 'App',
+  created (): void {
+    userModule.getUserInfo()
+  },
   components: { MFooter }
 })
 </script>
 
 <style lang="less">
+  body {
+    overscroll-behavior-y: contain!important;
+  }
   #app {
     font-size: 0.32rem;
   }
@@ -30,10 +37,12 @@ export default Vue.extend({
     height: calc(100vh - 1rem);
   }
   .padding-h {
-    padding: 0 0.2rem;
+    padding-right: 0.32rem;
+    padding-left: 0.32rem;
   }
   .padding-v {
-    padding: 0.2rem 0;
+    padding-top: 0.32rem;
+    padding-bottom: 0.32rem;
   }
   .position-bottom {
     position: fixed!important;

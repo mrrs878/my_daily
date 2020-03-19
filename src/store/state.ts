@@ -1,3 +1,6 @@
+import User from '@/models/User'
+
 export default {
-  tasks: []
+  tasks: [],
+  user: new User()
 }

@@ -1,10 +1,18 @@
 import { MutationTree } from 'vuex'
 import { StateI } from '@/interface/store'
-import { TaskI } from '@/interface/model'
+import {TaskI, UserI } from '@/interface/model'
+
+export enum MUTATIONS_E {
+  updateTasks = 'updateTasks',
+  updateUser = 'updateUser'
+}
 
 const taskMutations: MutationTree<StateI> = {
-  updateTasks (state, payload: Array<TaskI>) {
+  [MUTATIONS_E.updateTasks] (state, payload: Array<TaskI>) {
     state.tasks = payload
+  },
+  [MUTATIONS_E.updateUser] (state, payload: UserI) {
+    state.user = payload
   }
 }
 

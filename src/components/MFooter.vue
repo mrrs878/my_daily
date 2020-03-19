@@ -20,16 +20,20 @@ enum FOOTER_ROUTES {
 
 export default Vue.extend({
   name: 'mFooter',
-  data () {
-    return {
-      active: 'task'
-    }
-  },
+  data: () => ({
+    active: 'task'
+  }),
   methods: {
     onTabbarChange (e: FOOTER_ROUTES) {
       const path = ROUTES_MAP[e]
-      if (!path) app.$router.push(ROUTES_MAP.notFound)
-      else if (app.$route.path !== path) app.$router.push(ROUTES_MAP[e])
+      if (!path && app) app.$router.push(ROUTES_MAP.notFound)
+      else if (app.$route.path !== path && app) app.$router.push(ROUTES_MAP[e])
+    }
+  },
+  watch: {
+    '$route' (newVal) {
+      const path = newVal.path.slice(1)
+      this.active = path === '' ? 'task' : path
     }
   },
   computed: {

@@ -2,14 +2,17 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import { TASK_ROUTES, TASK_ROUTES_MAP } from './taskRoutes'
+import { PROFILE_ROUTES, PROFILE_ROUTES_MAP } from './profileRoutes'
 
 Vue.use(VueRouter)
 
 const routes = [
-  ...TASK_ROUTES
+  ...TASK_ROUTES,
+  ...PROFILE_ROUTES
 ]
 const ROUTES_MAP = {
-  ...TASK_ROUTES_MAP
+  ...TASK_ROUTES_MAP,
+  ...PROFILE_ROUTES_MAP
 }
 
 const router = new VueRouter({

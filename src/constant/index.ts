@@ -1,3 +1,5 @@
+const test = '';
+
 export enum TASK_STATUS {
   pending,
   running,
@@ -38,3 +40,5 @@ export const UPDATE_MSG = {
   [TASK_STATUS.failed]: '',
   [TASK_STATUS.complete]: '确定已经完成该任务了吗?'
 }
+
+export const INVALID_NUMBER = -1

@@ -1,5 +1,5 @@
 import { TaskI } from '@/interface/model'
-import { TASK_STATUS } from '@/constant'
+import { TASK_STATUS, INVALID_NUMBER } from '@/constant'
 
 class Task implements TaskI {
   alarmTime: number;
@@ -12,7 +12,8 @@ class Task implements TaskI {
   UpdatedAt: string;
   ID: number;
 
-  constructor (alarmTime: number, detail: string, label: Array<string>, status: TASK_STATUS, title: string, id = -1, createAt = '', deletedAt = '', updatedAt = '') {
+  constructor (alarmTime: number, detail: string, label: Array<string>, status: TASK_STATUS, title: string,
+               id = INVALID_NUMBER, createAt = '', deletedAt = '', updatedAt = '') {
     this.alarmTime = alarmTime
     this.detail = detail
     this.label = label

@@ -30,7 +30,7 @@ module.exports = {
   },
   pwa: {
     name: 'MyDaily',
-    themeColor: '#4DBA87',
+    themeColor: '#ffffff',
     msTileColor: '#000000',
     appleMobileWebAppCapable: 'yes',
     appleMobileWebAppStatusBarStyle: 'black',

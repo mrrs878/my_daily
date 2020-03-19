@@ -5,11 +5,12 @@ import store from './store'
 import './registerServiceWorker'
 
 import VConsole from 'vconsole'
-import { Button, Cell, Checkbox, Icon, NavBar, Field, Popup, Dialog } from 'vant'
+import { Button, Cell, Checkbox, Icon, NavBar, Field, Popup, Dialog, CellGroup, Skeleton, PullRefresh } from 'vant'
 import { longPress } from './plugins/directive'
 
 Vue.config.productionTip = false
 Vue.use(Button).use(Cell).use(Checkbox).use(Icon).use(NavBar).use(Field).use(Popup).use(Dialog)
+  .use(CellGroup).use(Skeleton).use(PullRefresh)
 Vue.directive('longPress', longPress)
 
 Vue.prototype.onNavBarClickLeft = () => router.back()
@@ -17,7 +18,7 @@ if (process.env.NODE_ENV !== 'production' && !(navigator.platform.includes('Win'
   Vue.prototype.$vConsole = new VConsole()
 }
 
-localStorage.setItem('access_token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODQ1MjI3ODUsInVzZXJfaWQiOjEsIm5hbWUiOiJhZG1pbiJ9.wBZbxeWxBZbGTRaLEni7_02LmFHCkMqZVB-bQLupCb0')
+localStorage.setItem('access_token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODQ2Mjg3MDEsInVzZXJfaWQiOjEsIm5hbWUiOiJhZG1pbiJ9.8UQffWrGDn46702XhkFeBGLFU1oKJHVRVD0E-56ZFO0')
 
 export default new Vue({
   router,

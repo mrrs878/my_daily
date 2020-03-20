@@ -29,7 +29,7 @@ export enum RES_CODE {
 export enum BASE_APIS {
   // test = 'http://192.168.2.146:9090',
   test = 'http://192.168.5.210:9090',
-  dev = 'http://localhost:9090',
+  dev = 'http://118.190.140.52:9090',
   prod = ''
 }
 

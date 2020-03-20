@@ -1,16 +1,47 @@
 /* eslint-disable no-console */
-
 import { register } from 'register-service-worker'
+import { urlBase64ToUint8Array } from '@/util/base64'
+import { subscribable } from '@/api/sw'
 
-if ('serviceWorker' in window.navigator && process.env.NODE_ENV === 'production') {
+function askPermission() {
+  return new Promise(function(resolve, reject) {
+    const permissionResult = Notification.requestPermission(function(result) {
+      resolve(result);
+    });
+
+    if (permissionResult) {
+      new Notification('test')
+      permissionResult.then(resolve, reject);
+    }
+  })
+    .then(function(permissionResult) {
+      if (permissionResult !== 'granted') {
+        throw new Error('We weren\'t granted permission.');
+      }
+    });
+}
+
+async function subscribeUserToPush(registration: ServiceWorkerRegistration, publicKey: string) {
+  await askPermission()
+  const subscribeOptions = {
+    userVisibleOnly: true,
+    applicationServerKey: urlBase64ToUint8Array(publicKey)
+  };
+  return await registration.pushManager.subscribe(subscribeOptions)
+}
+
+if ('serviceWorker' in window.navigator) {
+  const publicKey = 'BOEQSjdhorIf8M0XFNlwohK3sTzO9iJwvbYU-fuXRF0tvRpPPMGO6d_gJC_pUQwBT7wD8rKutpNTFHOHN3VqJ0A';
   register(`${process.env.BASE_URL}service-worker.js`, {
-    ready () {
+    ready (res) {
       console.log(
         'App is being served from cache by a service worker.\n' +
         'For more details, visit https://goo.gl/AFskqB'
       )
     },
-    registered () {
+    async registered (reg) {
+      const subscription = await subscribeUserToPush(reg, publicKey)
+      await subscribable(subscription)
       console.log('Service worker has been registered.')
     },
     cached () {

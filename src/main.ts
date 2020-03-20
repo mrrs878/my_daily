@@ -18,7 +18,7 @@ if (process.env.NODE_ENV !== 'production' && !(navigator.platform.includes('Win'
   Vue.prototype.$vConsole = new VConsole()
 }
 
-localStorage.setItem('access_token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODQ2OTMxMzUsInVzZXJfaWQiOjEsIm5hbWUiOiJhZG1pbiJ9.ArYgUWwxdGBZs21WAaVJjw93F98347OApQLNutRqkOk')
+localStorage.setItem('access_token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODQ3MDU1NDUsInVzZXJfaWQiOjEsIm5hbWUiOiJhZG1pbiJ9.Bg6k233zD-yVZcQ0vWRHNGVnGq8iiwLkUV_2RI91OTc')
 
 export default new Vue({
   router,

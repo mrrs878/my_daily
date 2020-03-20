@@ -16,10 +16,13 @@
         <van-checkbox v-model="checked" disabled shape="square">PWA</van-checkbox>
       </van-cell>
       <van-cell>
-        <van-checkbox v-model="checked" disabled shape="square">习惯增、删、改、查</van-checkbox>
+        <van-checkbox v-model="checked" disabled shape="square">推送功能</van-checkbox>
       </van-cell>
       <van-cell>
-        <van-checkbox v-model="checked" disabled shape="square">习惯完成情况图表分析</van-checkbox>
+        <van-checkbox v-model="unchecked" disabled shape="square">习惯增、删、改、查</van-checkbox>
+      </van-cell>
+      <van-cell>
+        <van-checkbox v-model="unchecked" disabled shape="square">习惯完成情况图表分析</van-checkbox>
       </van-cell>
     </van-cell-group>
     <br>
@@ -37,7 +40,8 @@ export default Vue.extend({
   name: 'about',
   data () {
     return {
-      checked: true
+      checked: true,
+      unchecked: false
     }
   },
   components: {

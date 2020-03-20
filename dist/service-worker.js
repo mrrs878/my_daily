@@ -1,4 +1,4 @@
-importScripts("/precache-manifest.af74e3a5cf1adf57cb48b7eb29ffcc1b.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts("/precache-manifest.85a866dcb2a684a2d9900181f4ffe871.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 /* eslint-disable */
 
@@ -22,14 +22,7 @@ workbox.routing.registerRoute(
   new workbox.strategies.NetworkFirst()
 )
 
-self.addEventListener('push', function (e) {
-  let data = e.data
-  if (e.data) {
-    data = data.json()
-    console.log('push的数据为：', data)
-    self.registration.showNotification(data.text)
-  } else {
-    console.log('push没有任何数据')
-  }
-})
+self.onpush = async e => {
+  await self.registration.showNotification(e.data.json().text)
+}
 

@@ -20,13 +20,6 @@ workbox.routing.registerRoute(
   new workbox.strategies.NetworkFirst()
 )
 
-self.addEventListener('push', function (e) {
-  let data = e.data
-  if (e.data) {
-    data = data.json()
-    console.log('push的数据为：', data)
-    self.registration.showNotification(data.text)
-  } else {
-    console.log('push没有任何数据')
-  }
-})
+self.onpush = async e => {
+  await self.registration.showNotification(e.data.json().text)
+}

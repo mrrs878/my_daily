@@ -3,26 +3,7 @@ import { register } from 'register-service-worker'
 import { urlBase64ToUint8Array } from '@/util/base64'
 import { subscribable } from '@/api/sw'
 
-function askPermission() {
-  return new Promise(function(resolve, reject) {
-    const permissionResult = Notification.requestPermission(function(result) {
-      resolve(result);
-    });
-
-    if (permissionResult) {
-      new Notification('test')
-      permissionResult.then(resolve, reject);
-    }
-  })
-    .then(function(permissionResult) {
-      if (permissionResult !== 'granted') {
-        throw new Error('We weren\'t granted permission.');
-      }
-    });
-}
-
 async function subscribeUserToPush(registration: ServiceWorkerRegistration, publicKey: string) {
-  await askPermission()
   const subscribeOptions = {
     userVisibleOnly: true,
     applicationServerKey: urlBase64ToUint8Array(publicKey)

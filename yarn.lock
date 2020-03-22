@@ -2127,7 +2127,7 @@ babel-preset-jest@^24.9.0:
     "@babel/plugin-syntax-object-rest-spread" "^7.0.0"
     babel-plugin-jest-hoist "^24.9.0"
 
-babel-runtime@6.x.x, babel-runtime@^6.22.0, babel-runtime@^6.26.0:
+babel-runtime@^6.22.0, babel-runtime@^6.26.0:
   version "6.26.0"
   resolved "https://registry.npm.taobao.org/babel-runtime/download/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
   integrity sha1-llxwWGaOgrVde/4E/yM3vItWR/4=
@@ -10539,13 +10539,6 @@ workbox-window@^4.3.1:
   integrity sha1-7mBRvxDwavpUg8m436BTGZTt4PM=
   dependencies:
     workbox-core "^4.3.1"
-
-workbox@^0.0.0:
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/workbox/-/workbox-0.0.0.tgz#26f5e7834abf83178c7c454edc91bc61fef8d6c3"
-  integrity sha1-JvXng0q/gxeMfEVO3JG8Yf741sM=
-  dependencies:
-    babel-runtime "6.x.x"
 
 worker-farm@^1.7.0:
   version "1.7.0"

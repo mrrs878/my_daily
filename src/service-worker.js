@@ -21,5 +21,5 @@ workbox.routing.registerRoute(
 )
 
 self.onpush = async e => {
-  await self.registration.showNotification(e.data.json().text)
+  await self.registration.showNotification(e.data.json().detail)
 }

@@ -28,7 +28,7 @@ export enum RES_CODE {
 
 export enum BASE_APIS {
   // test = 'http://192.168.2.146:9090',
-  test = 'http://192.168.5.210:9090',
+  test = 'http://localhost:9090',
   dev = 'https://api.p18c.top',
   prod = ''
 }

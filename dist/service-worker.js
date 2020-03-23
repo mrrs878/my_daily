@@ -1,4 +1,4 @@
-importScripts("/precache-manifest.91ef55a0e4391f134529d7f31d93448d.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts("/precache-manifest.3c4da7eff709a348dca949e521ce1602.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 /* eslint-disable */
 
@@ -23,6 +23,6 @@ workbox.routing.registerRoute(
 )
 
 self.onpush = async e => {
-  await self.registration.showNotification(e.data.json().text)
+  await self.registration.showNotification(e.data.json().detail)
 }
 

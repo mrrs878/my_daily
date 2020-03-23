@@ -11,7 +11,7 @@ async function subscribeUserToPush(registration: ServiceWorkerRegistration, publ
   return await registration.pushManager.subscribe(subscribeOptions)
 }
 
-if ('serviceWorker' in window.navigator) {
+if ('serviceWorker' in window.navigator && process.env.NODE_ENV === 'production') {
   const publicKey = 'BOEQSjdhorIf8M0XFNlwohK3sTzO9iJwvbYU-fuXRF0tvRpPPMGO6d_gJC_pUQwBT7wD8rKutpNTFHOHN3VqJ0A';
   register(`${process.env.BASE_URL}service-worker.js`, {
     ready (res) {

@@ -21,9 +21,14 @@ if ('serviceWorker' in window.navigator && process.env.NODE_ENV === 'production'
       )
     },
     async registered (reg) {
-      const subscription = await subscribeUserToPush(reg, publicKey)
-      await subscribable(subscription)
-      console.log('Service worker has been registered.')
+      try {
+        const subscription = await subscribeUserToPush(reg, publicKey)
+        console.log('subscribeUserToPushed.')
+        await subscribable(subscription)
+        console.log('Service worker has been registered.')
+      } catch (e) {
+        console.log(e)
+      }
     },
     cached () {
       console.log('Content has been cached for offline use.')

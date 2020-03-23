@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
-import { register } from 'register-service-worker'
-import { urlBase64ToUint8Array } from '@/util/base64'
-import { subscribable } from '@/api/sw'
+import {register} from 'register-service-worker'
+import {urlBase64ToUint8Array} from '@/util/base64'
+import {subscribable} from '@/api/sw'
 
 async function subscribeUserToPush(registration: ServiceWorkerRegistration, publicKey: string) {
   const subscribeOptions = {
@@ -27,7 +27,7 @@ if ('serviceWorker' in window.navigator && process.env.NODE_ENV === 'production'
         await subscribable(subscription)
         console.log('Service worker has been registered.')
       } catch (e) {
-        console.log(e)
+        console.log('register error', e, e.message)
       }
     },
     cached () {

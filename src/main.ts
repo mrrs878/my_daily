@@ -14,7 +14,7 @@ Vue.use(Button).use(Cell).use(Checkbox).use(Icon).use(NavBar).use(Field).use(Pop
 Vue.directive('longPress', longPress)
 
 Vue.prototype.onNavBarClickLeft = () => router.back()
-if (process.env.NODE_ENV !== 'production' && !(navigator.platform.includes('Win') || navigator.platform.includes('Mac'))) {
+if (!(navigator.platform.includes('Win') || navigator.platform.includes('Mac'))) {
   Vue.prototype.$vConsole = new VConsole()
 }
 

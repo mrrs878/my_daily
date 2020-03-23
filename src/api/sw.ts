@@ -2,7 +2,7 @@
 import { AjaxResponseI } from '@/interface/ajax'
 import ajax from '@/util/ajax'
 
-const BASE_API = 'http://localhost:8086'
+const BASE_API = 'https://pushservice.p18c.top'
 const SW_API = `${BASE_API}/sw`
 
 export const subscribable = (data: PushSubscription): Promise<AjaxResponseI<any>> => {

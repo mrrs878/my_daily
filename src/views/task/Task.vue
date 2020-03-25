@@ -32,6 +32,7 @@ import TaskModule from '@/module/task'
 import { RES_CODE, TASK_STATUS, UPDATE_MSG } from '@/constant'
 import { ROUTES_MAP } from '@/router'
 import { mapState } from 'vuex'
+import { swReg } from '@/registerServiceWorker'
 
 const DATE = new Date()
 
@@ -75,7 +76,8 @@ export default Vue.extend({
       this.isSwiping = false
     },
     onAddTaskClick () {
-      this.$router.push(ROUTES_MAP.addTask)
+      swReg.showNotification('添加任务')
+      // this.$router.push(ROUTES_MAP.addTask)
     },
     async onSwipeRightClick (status: TASK_STATUS, id: number) {
       await Dialog.confirm({ title: UPDATE_MSG[status] })

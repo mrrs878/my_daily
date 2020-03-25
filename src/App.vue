@@ -52,6 +52,14 @@ export default Vue.extend({
     position: fixed!important;
     bottom: 1rem;
   }
+  .empty {
+    color: #ccc;
+    text-align: center;
+    position: fixed;
+    top: 2rem;
+    width: 100%;
+  }
+
   .van-picker__cancel {
     opacity: 0;
   }

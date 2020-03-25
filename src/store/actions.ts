@@ -7,6 +7,9 @@ export enum ACTIONS_E {
   delTask = 'delTask',
   updateTask = 'updateTask',
   updateTasks = 'updateTasks',
+  updateHabit = 'updateHabit',
+  updateHabits = 'updateHabits',
+  addHabit = 'addHabit',
   updateUser = 'updateUser'
 }
 
@@ -31,7 +34,21 @@ const taskActions: ActionTree<StateI, StateI> = {
   },
   [ACTIONS_E.updateUser] ({ commit }, payload) {
     commit(MUTATIONS_E.updateUser, payload)
-  }
+  },
+  [ACTIONS_E.addHabit] ({ commit, state }, payload) {
+    const tasks = [...state.habits]
+    tasks.push(payload)
+    commit(MUTATIONS_E.updateHabits, tasks)
+  },
+  [ACTIONS_E.updateHabit] ({ commit, state }, payload) {
+    const index = state.habits.findIndex(item => item.ID === payload.ID)
+    const tasks = [...state.habits]
+    tasks[index] = payload
+    commit(MUTATIONS_E.updateHabits, tasks)
+  },
+  [ACTIONS_E.updateHabits] ({ commit }, payload) {
+    commit(MUTATIONS_E.updateHabits, payload)
+  },
 }
 
 export default taskActions

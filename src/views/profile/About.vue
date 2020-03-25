@@ -7,6 +7,12 @@
     </van-cell-group>
     <van-cell-group title="主要功能:">
       <van-cell>
+        <van-checkbox v-model="checked" disabled shape="square">登录、注册功能</van-checkbox>
+      </van-cell>
+      <van-cell>
+        <van-checkbox v-model="unchecked" disabled shape="square">微信登录功能</van-checkbox>
+      </van-cell>
+      <van-cell>
         <van-checkbox v-model="checked" disabled shape="square">任务增、删、改、查</van-checkbox>
       </van-cell>
       <van-cell>

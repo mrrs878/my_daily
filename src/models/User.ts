@@ -10,15 +10,15 @@ class User implements UserI {
   role: number;
   token: string;
 
-  constructor(CreatedAt: string = '', DeletedAt: string = '', ID: number = INVALID_NUMBER, UpdatedAt: string = '',
-              name: string = '', role: number =INVALID_NUMBER, token: string = '') {
-    this.CreatedAt = CreatedAt;
-    this.DeletedAt = DeletedAt;
-    this.ID = ID;
-    this.UpdatedAt = UpdatedAt;
-    this.name = name;
-    this.role = role;
-    this.token = token;
+  constructor (CreatedAt = '', DeletedAt = '', ID: number = INVALID_NUMBER, UpdatedAt = '',
+    name = '', role: number = INVALID_NUMBER, token = '') {
+    this.CreatedAt = CreatedAt
+    this.DeletedAt = DeletedAt
+    this.ID = ID
+    this.UpdatedAt = UpdatedAt
+    this.name = name
+    this.role = role
+    this.token = token
   }
 }
 

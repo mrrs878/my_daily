@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
+import router, {ROUTES_MAP} from './router'
 import store from './store'
 import './registerServiceWorker'
 
@@ -13,12 +13,20 @@ Vue.use(Button).use(Cell).use(Checkbox).use(Icon).use(NavBar).use(Field).use(Pop
   .use(CellGroup).use(Skeleton).use(PullRefresh)
 Vue.directive('longPress', longPress)
 
-Vue.prototype.onNavBarClickLeft = () => router.back()
 if (!(navigator.platform.includes('Win') || navigator.platform.includes('Mac'))) {
   Vue.prototype.$vConsole = new VConsole()
 }
 
-localStorage.setItem('access_token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODQ5ODEwNzAsInVzZXJfaWQiOjEsIm5hbWUiOiJhZG1pbiJ9.zLs5HR07l95H9fkEKtnJypn-I6_x_duREsiolzZCoZQ')
+Vue.prototype.onNavBarClickLeft = () => router.back()
+window.loginToast = function (): void {
+  Dialog.confirm({
+    title: '提示',
+    message: '未登录，前往登录?',
+    confirmButtonText: '去登录'
+  }).then(() => {
+    router.push(ROUTES_MAP.login).catch(err => console.log(err))
+  })
+}
 
 export default new Vue({
   router,

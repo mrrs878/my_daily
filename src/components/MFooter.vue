@@ -1,8 +1,23 @@
 <template>
   <van-tabbar v-model="active" @change="onTabbarChange" v-show="isFooter">
-    <van-tabbar-item name="task" icon="clock-o">任务</van-tabbar-item>
-    <van-tabbar-item name="habit" icon="award-o">习惯</van-tabbar-item>
-    <van-tabbar-item name="profile" icon="user-o">我的</van-tabbar-item>
+    <van-tabbar-item name="task">
+      任务
+      <template #icon="props">
+        <van-icon :name="props.active ? 'clock' : 'clock-o'" />
+      </template>
+    </van-tabbar-item>
+    <van-tabbar-item name="habit">
+      习惯
+      <template #icon="props">
+        <van-icon :name="props.active ? 'award' : 'award-o'" />
+      </template>
+    </van-tabbar-item>
+    <van-tabbar-item name="profile" icon="user-o">
+      我的
+      <template #icon="props">
+        <van-icon :name="props.active ? 'manager' : 'user-o'" />
+      </template>
+    </van-tabbar-item>
   </van-tabbar>
 </template>
 

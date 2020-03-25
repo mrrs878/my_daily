@@ -1,6 +1,7 @@
-import {TaskI, UserI } from '@/interface/model'
+import { HabitI, TaskI, UserI } from '@/interface/model'
 
 export interface StateI {
   tasks: Array<TaskI>;
-  user: UserI
+  habits: Array<HabitI>
+  user: UserI;
 }

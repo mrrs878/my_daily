@@ -2,7 +2,7 @@
   <div class="container">
     <br>
     <van-skeleton title avatar :row="0" :loading="isReady">
-      <van-cell center :title="user.name" is-link>
+      <van-cell center :title="user.name || '点击登录'" is-link to="/profile/userInfo">
         <img slot="icon" class="user-avatar" src="../../assets/img/profile/defaultAvatar.png" alt="">
       </van-cell>
     </van-skeleton>

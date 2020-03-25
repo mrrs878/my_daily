@@ -1,4 +1,4 @@
-const test = '';
+import { ROUTES_MAP } from '@/router'
 
 export enum TASK_STATUS {
   pending,
@@ -39,6 +39,14 @@ export const UPDATE_MSG = {
   [TASK_STATUS.running]: '确定任务在进行中吗?',
   [TASK_STATUS.failed]: '',
   [TASK_STATUS.complete]: '确定已经完成该任务了吗?'
+}
+
+export enum HABIT_STATUS {
+  pending,
+  running,
+  complete,
+  failed,
+  cancel
 }
 
 export const INVALID_NUMBER = -1

@@ -13,7 +13,7 @@ class Task implements TaskI {
   ID: number;
 
   constructor (alarmTime: number, detail: string, label: Array<string>, status: TASK_STATUS, title: string,
-               id = INVALID_NUMBER, createAt = '', deletedAt = '', updatedAt = '') {
+    id = INVALID_NUMBER, createAt = '', deletedAt = '', updatedAt = '') {
     this.alarmTime = alarmTime
     this.detail = detail
     this.label = label

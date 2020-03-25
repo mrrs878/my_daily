@@ -8,13 +8,13 @@ const BASE_PATH = '/profile'
 
 const PROFILE_ROUTES_MAP = {
   profile: BASE_PATH,
-  userInfo: `${ BASE_PATH }/userInfo`,
-  analysisChart: `${ BASE_PATH }/analysisChart`,
-  setting: `${ BASE_PATH }/setting`,
-  about: `${ BASE_PATH }/about`
+  userInfo: `${BASE_PATH}/userInfo`,
+  analysisChart: `${BASE_PATH}/analysisChart`,
+  setting: `${BASE_PATH}/setting`,
+  about: `${BASE_PATH}/about`
 }
 
-const PROFILE_ROUTES: Array<RouteConfig>  = [
+const PROFILE_ROUTES: Array<RouteConfig> = [
   {
     name: 'profile',
     path: PROFILE_ROUTES_MAP.profile,

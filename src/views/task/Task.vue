@@ -17,6 +17,7 @@
                         @click="onSwipeRightClick(TASK_STATUS.complete, item.ID)" />
           </template>
         </van-swipe-cell>
+        <div class="empty" v-show="tasks.length === 0">空空如也~</div>
       </div>
     </van-pull-refresh>
     <van-calendar v-model="isCalendar" @confirm="onCalendarConfirm" :default-date="defaultDate" :min-date="minDate" :max-date="maxDate" />

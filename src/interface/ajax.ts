@@ -6,3 +6,5 @@ export interface AjaxResponseI<T> {
 }
 
 export type UpdateTaskStatusReqT = { id: number; status: number }
+
+export type LoginReqI = { name: string; password: string }

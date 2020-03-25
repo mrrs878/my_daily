@@ -1,5 +1,3 @@
-import { RES_CODE } from '@/constant'
-import { TASK_STATUS } from '@/constant'
 <template>
   <div class="container">
     <van-nav-bar left-text="添加任务" left-arrow @click-left="onNavBarClickLeft" />
@@ -54,7 +52,7 @@ export default Vue.extend({
   name: 'addTask',
   data () {
     return {
-      isAlarmPopup: false,
+      isAlarmTimePopup: false,
       isLabelPopup: false,
       task: new Task(CURRENT_DATE_TIME.getTime(), '', [], TASK_STATUS.pending, ''),
       taskLabel: '',
@@ -87,10 +85,10 @@ export default Vue.extend({
       this.task.detail = e
     },
     onTaskAlarmClick () {
-      this.isAlarmPopup = true
+      this.isAlarmTimePopup = true
     },
     onDateTimeConfirm (value: Date) {
-      this.isAlarmPopup = false
+      this.isAlarmTimePopup = false
       this.task.alarmTime = value.getTime()
     },
     onTaskLabelInput (value: string) {

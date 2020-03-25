@@ -16,5 +16,8 @@
   "start_url": "/",
   "display": "standalone",
   "themeColor": "#ffffff",
-  "background_color": "#000000"
+  "background_color": "#000000",
+  "permissions": [
+    "notifications"
+  ]
 }

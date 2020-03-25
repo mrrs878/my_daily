@@ -22,7 +22,6 @@ if ('serviceWorker' in window.navigator) {
         const subscription = await subscribeUserToPush(reg, publicKey)
         console.log('subscribeUserToPushed.')
         await subscribable(subscription)
-        swReg = reg
       } catch (e) {
         console.log('register error', e, e.message)
       }
@@ -31,7 +30,8 @@ if ('serviceWorker' in window.navigator) {
         'For more details, visit https://goo.gl/AFskqB'
       )
     },
-    async registered () {
+    async registered (reg) {
+      swReg = reg
       console.log('Service worker has been registered.')
     },
     cached () {

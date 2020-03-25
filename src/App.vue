@@ -9,18 +9,13 @@
 import Vue from 'vue'
 import MFooter from '@/components/MFooter.vue'
 import userModule from '@/module/user'
+import { initWorkers } from '@/worker'
 
 export default Vue.extend({
   name: 'App',
-  methods: {
-    initWorkers () {
-      const script = new Blob()
-      const url = URL.createObjectURL(script)
-      const worker = new Worker(url)
-    }
-  },
   created (): void {
     userModule.getUserInfo()
+    initWorkers()
   },
   components: { MFooter }
 })

@@ -1,5 +1,3 @@
-import { ROUTES_MAP } from '@/router'
-
 export enum TASK_STATUS {
   pending,
   running,
@@ -47,6 +45,11 @@ export enum HABIT_STATUS {
   complete,
   failed,
   cancel
+}
+
+export enum MSG_TYPE {
+  alarm = 'alarm',
+  token = 'token'
 }
 
 export const INVALID_NUMBER = -1

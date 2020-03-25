@@ -1,4 +1,4 @@
-import {HabitI} from '@/interface/model'
+import { HabitI } from '@/interface/model'
 
 export default {
   addHabit (habit: HabitI): Promise<ModuleRes> {

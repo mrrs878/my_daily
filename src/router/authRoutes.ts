@@ -7,8 +7,8 @@ const BASE_PATH = '/auth'
 
 const AUTH_ROUTES_MAP = {
   login: BASE_PATH,
-  register: `${ BASE_PATH }/register`,
-  forgetPwd: `${ BASE_PATH }/forgetPwd`
+  register: `${BASE_PATH}/register`,
+  forgetPwd: `${BASE_PATH}/forgetPwd`
 }
 
 const AUTH_ROUTES: Array<RouteConfig> = [

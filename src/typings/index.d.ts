@@ -1,3 +1,4 @@
+type ObjectKeyValue<T> = { [propName: string]: T }
 type ModuleRes = { code: number; msg: string }
 
 interface workBoxI {

@@ -48,7 +48,7 @@ const taskActions: ActionTree<StateI, StateI> = {
   },
   [ACTIONS_E.updateHabits] ({ commit }, payload) {
     commit(MUTATIONS_E.updateHabits, payload)
-  },
+  }
 }
 
 export default taskActions

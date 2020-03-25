@@ -10,7 +10,8 @@ async function subscribeUserToPush (registration: ServiceWorkerRegistration, pub
     userVisibleOnly: true,
     applicationServerKey: urlBase64ToUint8Array(publicKey)
   }
-  return await registration.pushManager.subscribe(subscribeOptions)
+  const res = await registration.pushManager.subscribe(subscribeOptions)
+  return res
 }
 
 // if ('serviceWorker' in window.navigator && process.env.NODE_ENV === 'production') {
@@ -25,7 +26,7 @@ if ('serviceWorker' in window.navigator) {
         console.log('register error', e, e.message)
       }
       console.log(
-        'App is being served from cache by a service worker.\n' +
+        'App is being served from cache by a worker worker.\n' +
         'For more details, visit https://goo.gl/AFskqB'
       )
     },
@@ -46,7 +47,7 @@ if ('serviceWorker' in window.navigator) {
       console.log('No internet connection found. App is running in offline mode.')
     },
     error (error) {
-      console.error('Error during service worker registration:', error)
+      console.error('Error during worker worker registration:', error)
     }
   })
 }

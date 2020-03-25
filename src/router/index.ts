@@ -36,8 +36,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   if (!localStorage.getItem(CONFIG.tokenName) && !WHITE_LIST_PAGE.includes(to.path)) {
     loginToast()
-  }
-  else next()
+  } else next()
 })
 
 export default router

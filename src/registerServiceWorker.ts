@@ -20,7 +20,6 @@ if ('serviceWorker' in window.navigator) {
     async ready (reg) {
       try {
         const subscription = await subscribeUserToPush(reg, publicKey)
-        console.log('subscribeUserToPushed.')
         await subscribable(subscription)
       } catch (e) {
         console.log('register error', e, e.message)

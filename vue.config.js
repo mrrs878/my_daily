@@ -36,7 +36,7 @@ module.exports = {
     appleMobileWebAppStatusBarStyle: 'black',
     workboxPluginMode: 'InjectManifest',
     workboxOptions: {
-      swSrc: 'src/pwaSw.js'
+      swSrc: 'src/service-worker.js'
     }
   }
 }

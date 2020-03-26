@@ -9,7 +9,7 @@
       <van-tag type="primary" class="task-label" mark v-for="item in task.label" :key="item">{{ item }}</van-tag>
     </van-cell>
     <van-button size="large" type="primary" class="position-bottom" @click="onCreateTaskClick">添加</van-button>
-    <van-popup v-model="isAlarmPopup" round close-icon-position="top-left" position="bottom" closeable>
+    <van-popup v-model="isAlarmTimePopup" round close-icon-position="top-left" position="bottom" closeable>
       <van-datetime-picker v-model="currentDateTime" type="datetime"
                            :formatter="dateTimeFormatter" @confirm="onDateTimeConfirm"
                            :min-date="minDateTime" :max-date="maxDateTime"/>

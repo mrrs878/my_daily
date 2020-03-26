@@ -5,12 +5,12 @@ import store from './store'
 import './registerServiceWorker'
 
 import VConsole from 'vconsole'
-import { Button, Cell, Checkbox, Icon, NavBar, Field, Popup, Dialog, CellGroup, Skeleton, PullRefresh } from 'vant'
+import { Button, Cell, Checkbox, Icon, NavBar, Field, Popup, Dialog, CellGroup, Skeleton, PullRefresh, Picker } from 'vant'
 import { longPress } from './plugins/directive'
 
 Vue.config.productionTip = false
 Vue.use(Button).use(Cell).use(Checkbox).use(Icon).use(NavBar).use(Field).use(Popup).use(Dialog)
-  .use(CellGroup).use(Skeleton).use(PullRefresh)
+  .use(CellGroup).use(Skeleton).use(PullRefresh).use(Picker)
 Vue.directive('longPress', longPress)
 
 if (!(navigator.platform.includes('Win') || navigator.platform.includes('Mac'))) {

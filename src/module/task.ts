@@ -5,6 +5,7 @@ import store from '@/store'
 import { RES_CODE } from '@/constant'
 import ToastError from '@/models/ToastError'
 import { ACTIONS_E } from '@/store/actions'
+import * as R from 'ramda'
 
 export default {
   async addTask (data: TaskI): Promise<ModuleRes> {
@@ -22,7 +23,7 @@ export default {
   async viewTasks (): Promise<ModuleRes> {
     try {
       const res = await VIEW_TASKS()
-      if (res.code === RES_CODE.success) {
+      if (res.code === RES_CODE.success && !R.equals<Array<TaskI>>(res.data, store.state.tasks)) {
         await store.dispatch(ACTIONS_E.updateTasks, res.data)
       }
       return Promise.resolve({ code: res.code, msg: res.msg })

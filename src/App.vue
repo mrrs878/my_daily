@@ -1,3 +1,4 @@
+import { MSG_TYPE } from '@/constant'
 <template>
   <div id="app">
     <router-view />
@@ -10,6 +11,10 @@ import Vue from 'vue'
 import MFooter from '@/components/MFooter.vue'
 import userModule from '@/module/user'
 import { initWorkers } from '@/worker'
+import { postMessage } from '@/worker/alarm'
+import { mapState } from 'vuex'
+import { TaskI } from '@/interface/model'
+import { MSG_TYPE } from '@/constant'
 
 export default Vue.extend({
   name: 'App',
@@ -17,7 +22,18 @@ export default Vue.extend({
     userModule.getUserInfo()
     initWorkers()
   },
-  components: { MFooter }
+  components: { MFooter },
+  computed: {
+    ...mapState(['tasks'])
+  },
+  watch: {
+    tasks: {
+      handler (newVal) {
+        postMessage<Array<TaskI>>({ type: MSG_TYPE.tasksChange, msg: newVal })
+      },
+      deep: true
+    }
+  }
 })
 </script>
 

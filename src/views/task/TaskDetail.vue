@@ -15,7 +15,7 @@
         </div>
         <div slot="footer" class="panel-footer">
           <van-button size="small" type="danger">删除</van-button>
-          <div v-if="!task.DeletedAt">
+          <div v-if="!task.DeletedAt && task.status !== TASK_STATUS.failed">
             <van-button size="small" type="warning" @click="onStatusActionClick(TASK_STATUS.cancel)" v-if="task.status !== TASK_STATUS.cancel">取消</van-button>
             <van-button size="small" type="info" @click="onStatusActionClick(TASK_STATUS.running)" v-if="task.status !== TASK_STATUS.running">进行中</van-button>
             <van-button size="small" type="primary" @click="onStatusActionClick(TASK_STATUS.complete)" v-if="task.status !== TASK_STATUS.complete">完成</van-button>

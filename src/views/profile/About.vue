@@ -3,7 +3,7 @@
     <van-nav-bar left-text="关于" left-arrow @click-left="onNavBarClickLeft" />
     <van-cell title="一只基于Vue + Typescript的日志应用"></van-cell>
     <van-cell-group title="主要技术:">
-      <van-cell title="Vue、Typescript、Vant、PWA、ECharts"></van-cell>
+      <van-cell title="Vue、Typescript、Vant、PWA、Web Worker、ECharts"></van-cell>
     </van-cell-group>
     <van-cell-group title="主要功能:">
       <van-cell>

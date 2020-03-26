@@ -1,11 +1,12 @@
 import { LoginReqI } from '@/interface/ajax'
 import { LOGIN, REGISTER } from '@/api/auth'
 import { Toast } from 'vant'
-import { RES_CODE } from '@/constant'
+import {MSG_TYPE, RES_CODE} from '@/constant'
 import store from '@/store'
 import { ACTIONS_E } from '@/store/actions'
 import CONFIG from '@/config'
 import User from '@/models/User'
+import { postMessage } from '@/worker/alarm'
 
 export default {
   async login (data: LoginReqI) {
@@ -15,6 +16,7 @@ export default {
       if (res.code === RES_CODE.success) {
         await store.dispatch(ACTIONS_E.updateUser, res.data)
         localStorage.setItem(CONFIG.tokenName, res.data.token)
+        postMessage<string>({ type: MSG_TYPE.token, msg: res.data.token })
       }
       return Promise.resolve(res.code === RES_CODE.success)
     } catch (e) {

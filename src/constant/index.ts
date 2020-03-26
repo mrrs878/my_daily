@@ -49,7 +49,12 @@ export enum HABIT_STATUS {
 
 export enum MSG_TYPE {
   alarm = 'alarm',
-  token = 'token'
+  token = 'token',
+  requestError = 'requestError',
+  tasksChange = 'tasksChange',
+  habitsChange = 'habitsChange',
+  failed = 'failed',
+  setRefreshRate = 'setRefreshRate'
 }
 
 export const INVALID_NUMBER = -1

@@ -24,7 +24,7 @@ const ROUTES_MAP = {
 
 const WHITE_LIST_PAGE = [
   ROUTES_MAP.task, ROUTES_MAP.root, ROUTES_MAP.habit, ROUTES_MAP.profile, ROUTES_MAP.login, ROUTES_MAP.about,
-  ROUTES_MAP.register, ROUTES_MAP.forgetPwd
+  ROUTES_MAP.register, ROUTES_MAP.forgetPwd, ROUTES_MAP.githubLogin
 ]
 
 const router = new VueRouter({

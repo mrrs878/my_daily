@@ -2,7 +2,7 @@ import { MSG_TYPE } from '@/constant'
 <template>
   <div class="container">
     <van-nav-bar left-text="设置" left-arrow @click-left="onNavBarClickLeft" />
-    <van-cell title="清除缓存" is-link @click="onCleanCacheClick" />
+    <van-cell title="更新缓存" is-link @click="onCleanCacheClick" />
     <van-cell title="任务提醒灵敏度" value="1min" is-link @click="onSetRefreshRateCellClick" />
     <br>
     <br>
@@ -15,11 +15,12 @@ import { MSG_TYPE } from '@/constant'
 
 <script lang="ts">
 import Vue from 'vue'
-import { Dialog } from 'vant'
+import { Dialog, Toast } from 'vant'
 import AuthModule from '@/module/auth'
 import { ROUTES_MAP } from '@/router'
 import { postMessage } from '@/worker/alarm'
 import { MSG_TYPE } from '@/constant'
+import { swReg } from '@/registerServiceWorker'
 
 export default Vue.extend({
   name: 'setting',
@@ -30,11 +31,17 @@ export default Vue.extend({
     }
   },
   methods: {
-    cleanCache () {},
+    cleanCache () {
+      swReg.update().then(() => {
+        Toast('更新成功')
+      }).catch(e => {
+        console.log(e)
+      })
+    },
     onCleanCacheClick () {
       Dialog.confirm({
         title: '提示',
-        message: '确定清除缓存吗?'
+        message: '确定更新缓存吗?'
       }).then(this.cleanCache).catch(() => {})
     },
     onSetRefreshRateCellClick () {

@@ -1,16 +1,20 @@
 <template>
   <div class="container">
     <van-nav-bar left-text="关于" left-arrow @click-left="onNavBarClickLeft" />
-    <van-cell title="一只基于Vue + Typescript的日志应用"></van-cell>
+    <van-cell title="一只日志应用"></van-cell>
     <van-cell-group title="主要技术:">
       <van-cell title="Vue、Typescript、Vant、PWA、Web Worker、ECharts"></van-cell>
+      <van-cell title="Go、gin、gorm"></van-cell>
     </van-cell-group>
-    <van-cell-group title="主要功能:">
+    <van-cell-group title="主要功能:" class="feathers-container">
       <van-cell>
         <van-checkbox v-model="checked" disabled shape="square">登录、注册功能</van-checkbox>
       </van-cell>
       <van-cell>
-        <van-checkbox v-model="unchecked" disabled shape="square">微信登录功能</van-checkbox>
+        <van-checkbox v-model="unchecked" disabled shape="square">微信登录</van-checkbox>
+      </van-cell>
+      <van-cell>
+        <van-checkbox v-model="checked" disabled shape="square">Github登录</van-checkbox>
       </van-cell>
       <van-cell>
         <van-checkbox v-model="checked" disabled shape="square">任务增、删、改、查</van-checkbox>
@@ -19,13 +23,10 @@
         <van-checkbox v-model="checked" disabled shape="square">任务完成情况图表分析</van-checkbox>
       </van-cell>
       <van-cell>
-        <van-checkbox v-model="checked" disabled shape="square">PWA</van-checkbox>
+        <van-checkbox v-model="checked" disabled shape="square">提醒功能</van-checkbox>
       </van-cell>
       <van-cell>
         <van-checkbox v-model="checked" disabled shape="square">推送功能(仅桌面端)</van-checkbox>
-      </van-cell>
-      <van-cell>
-        <van-checkbox v-model="unchecked" disabled shape="square">提醒功能</van-checkbox>
       </van-cell>
       <van-cell>
         <van-checkbox v-model="unchecked" disabled shape="square">习惯增、删、改、查</van-checkbox>
@@ -62,6 +63,10 @@ export default Vue.extend({
 
 <style lang="less" scoped>
   .van-cell-group.van-hairline--top-bottom:after {
-    border-top-width: 0;
+    border-width: 0;
+  }
+  .feathers-container {
+    height: 40vh;
+    overflow-y: scroll;
   }
 </style>

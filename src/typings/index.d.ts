@@ -2,9 +2,18 @@ type ObjectKeyValue<T> = { [propName: string]: T }
 type ModuleRes = { code: number; msg: string }
 
 interface workBoxI {
-  core: {};
-  precaching: {};
-  routing: {};
+  core: {
+    setCacheNameDetails: Function
+  };
+  precaching: {
+    precacheAndRoute: Function
+  };
+  routing: {
+    registerRoute: Function
+  };
+  strategies: {
+    NetworkFirst: Function
+  }
 }
 declare var workbox: workBoxI
 

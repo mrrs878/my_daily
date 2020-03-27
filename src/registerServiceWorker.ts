@@ -40,8 +40,10 @@ if ('serviceWorker' in window.navigator) {
     updatefound () {
       console.log('New content is downloading.')
     },
-    updated () {
+    async updated (reg) {
       console.log('New content is available; please refresh.')
+      await reg.update()
+      console.log('update successful')
     },
     offline () {
       console.log('No internet connection found. App is running in offline mode.')

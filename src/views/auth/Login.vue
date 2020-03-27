@@ -2,7 +2,7 @@
   <div class="container">
     <van-nav-bar left-text="登录" left-arrow @click-left="onNavBarClickLeft" />
     <div class="login-info-container">
-      <van-field v-model="name" autofocus clearable placeholder="请输入账号" />
+      <van-field v-model="name" clearable placeholder="请输入账号" />
       <van-field v-model="password" type="password" clearable autosize placeholder="请输入密码" />
       <br>
       <div class="auth-action-container padding-h">
@@ -12,6 +12,9 @@
       <br>
       <br>
       <van-button size="large" type="primary" class="login-btn" @click="onLoginBtnClick">登录</van-button>
+    </div>
+    <div class="login-helpers">
+      <img src="../../assets/img/github.svg" class="login-type" @click="onGithubLoginClick" alt="">
     </div>
   </div>
 </template>
@@ -47,6 +50,9 @@ export default Vue.extend({
     },
     onAuthActionClick (type: string) {
       this.$router.push(type === 'forgetPwd' ? ROUTES_MAP.forgetPwd : ROUTES_MAP.register)
+    },
+    onGithubLoginClick () {
+      window.location.href = 'https://github.com/login/oauth/authorize?client_id=7b961b417e4b3fc83488&scope=user,public_repo'
     }
   }
 })
@@ -61,5 +67,13 @@ export default Vue.extend({
     display: flex;
     justify-content: space-between;
     color: #1683f0;
+  }
+  .login-helpers {
+    margin-top: 2.5rem;
+    text-align: center;
+    .login-type {
+      height: 0.8rem;
+      width: 0.8rem;
+    }
   }
 </style>

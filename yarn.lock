@@ -1132,11 +1132,6 @@
   resolved "https://registry.npm.taobao.org/@types/webpack-env/download/@types/webpack-env-1.15.1.tgz#c8e84705e08eed430b5e15b39c65b0944e4d1422"
   integrity sha1-yOhHBeCO7UMLXhWznGWwlE5NFCI=
 
-"@types/workbox-core@^4.3.0":
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/@types/workbox-core/-/workbox-core-4.3.0.tgz#c2f2a2caad4785f6ccdbef539477d49de6cc9160"
-  integrity sha512-0Tn2bbwYu+Exsp4L3lBA2voRi/7m+6qjgGIs4Lw3Hdm8+7caxAVRra6imkd9Wl3DmK0tKPHinKuo+ElXuqUvlg==
-
 "@types/yargs-parser@*":
   version "15.0.0"
   resolved "https://registry.npm.taobao.org/@types/yargs-parser/download/@types/yargs-parser-15.0.0.tgz#cb3f9f741869e20cce330ffbeb9271590483882d"
@@ -2127,7 +2122,7 @@ babel-preset-jest@^24.9.0:
     "@babel/plugin-syntax-object-rest-spread" "^7.0.0"
     babel-plugin-jest-hoist "^24.9.0"
 
-babel-runtime@^6.22.0, babel-runtime@^6.26.0:
+babel-runtime@6.x.x, babel-runtime@^6.22.0, babel-runtime@^6.26.0:
   version "6.26.0"
   resolved "https://registry.npm.taobao.org/babel-runtime/download/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
   integrity sha1-llxwWGaOgrVde/4E/yM3vItWR/4=
@@ -10539,6 +10534,13 @@ workbox-window@^4.3.1:
   integrity sha1-7mBRvxDwavpUg8m436BTGZTt4PM=
   dependencies:
     workbox-core "^4.3.1"
+
+workbox@^0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/workbox/-/workbox-0.0.0.tgz#26f5e7834abf83178c7c454edc91bc61fef8d6c3"
+  integrity sha1-JvXng0q/gxeMfEVO3JG8Yf741sM=
+  dependencies:
+    babel-runtime "6.x.x"
 
 worker-farm@^1.7.0:
   version "1.7.0"

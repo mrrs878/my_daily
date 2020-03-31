@@ -20,7 +20,6 @@
         <div class="empty" v-show="tasks.length === 0">空空如也~</div>
       </div>
     </van-pull-refresh>
-    <van-calendar v-model="isCalendar" @confirm="onCalendarConfirm" :default-date="defaultDate" :min-date="minDate" :max-date="maxDate" />
     <van-button type="primary" class="position-bottom footer" size="large" @click="onAddTaskClick">添加任务</van-button>
   </div>
 </template>
@@ -62,12 +61,6 @@ export default Vue.extend({
       }
       this.$router.push(`${ROUTES_MAP.taskDetail}/${e}`)
     },
-    onDateTimeClick () {
-      this.isCalendar = true
-    },
-    onCalendarConfirm () {
-      this.isCalendar = false
-    },
     onSwipeCellOpen () {
       this.isSwiping = true
     },
@@ -105,10 +98,6 @@ export default Vue.extend({
 </script>
 
 <style scoped lang="less">
-  .time {
-    text-align: center;
-    color: #1683f0;
-  }
   .task-status-icon {
     margin-right: 0.2rem;
     &.active {

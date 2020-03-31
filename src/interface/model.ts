@@ -31,3 +31,6 @@ export interface HabitI extends BaseModelI {
   alarmDate: Array<string>;
   validate: (...params: Array<any>) => string;
 }
+
+export interface MessageI extends BaseModelI{
+}

@@ -7,6 +7,9 @@
       </van-cell>
     </van-skeleton>
     <van-cell title="图表分析" is-link to="/profile/analysisChart" />
+    <van-cell title="消息中心" is-link center to="/profile/messageCenter">
+      <div class="badge" :class="{ 'empty': message.length === 0 }">{{ message.length }}</div>
+    </van-cell>
     <van-cell title="设置" is-link to="/profile/setting" />
     <van-cell title="关于" is-link to="/profile/about" />
   </div>
@@ -23,7 +26,7 @@ export default Vue.extend({
     }
   },
   computed: {
-    ...mapState(['user']),
+    ...mapState(['user', 'message']),
     isReady () {
       return this.user === null
     }
@@ -35,7 +38,20 @@ export default Vue.extend({
   .user-avatar {
     height: 1rem;
     width: 1rem;
-
     margin-right: 0.6rem;
+  }
+  .badge {
+    padding: 0 0.05rem;
+    background-color: #f00;
+    color: #fff;
+    border-radius: 999px;
+    width: max-content;
+    font-size: 0.22rem;
+    height: 0.3rem;
+    line-height: 0.3rem;
+    margin-left: auto;
+    &.empty {
+      opacity: 0;
+    }
   }
 </style>

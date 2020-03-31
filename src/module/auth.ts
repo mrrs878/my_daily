@@ -1,13 +1,13 @@
 import { LoginReqI } from '@/interface/ajax'
-import {LOGIN, LOGIN_BY_GITHUB, REGISTER} from '@/api/auth'
+import { LOGIN, LOGIN_BY_GITHUB, REGISTER } from '@/api/auth'
 import { Toast } from 'vant'
-import {MSG_TYPE, RES_CODE} from '@/constant'
+import { MSG_TYPE, RES_CODE } from '@/constant'
 import store from '@/store'
 import { ACTIONS_E } from '@/store/actions'
 import CONFIG from '@/config'
 import User from '@/models/User'
 import { postMessage } from '@/worker/alarm'
-import {UserI} from "@/interface/model";
+import { UserI } from '@/interface/model'
 
 export default {
   async login (data: LoginReqI) {
@@ -32,6 +32,7 @@ export default {
     localStorage.removeItem(CONFIG.tokenName)
     await store.dispatch(ACTIONS_E.updateUser, new User())
     await store.dispatch(ACTIONS_E.updateTasks, [])
+    await store.dispatch(ACTIONS_E.updateMessages, [])
     return Promise.resolve(true)
   },
   async register (data: LoginReqI) {

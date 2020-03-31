@@ -2,11 +2,12 @@
   <div class="container">
     <van-nav-bar left-text="任务详情" left-arrow @click-left="onNavBarClickLeft" />
     <van-pull-refresh v-model="isRefreshing" @refresh="onRefresh">
-      <van-panel :title="task.title" :desc="`更新时间: ${ task.UpdatedAt }`" :status="TASK_STATUS_VIEW[task.status]">
+      <van-panel :title="task.title" :status="TASK_STATUS_VIEW[task.status]">
         <div slot="header">
           <van-cell :title="task.title" :border="true" :value="TASK_STATUS_VIEW[task.status]">
             <div slot="label" class="panel-label">
               <van-tag mark type="primary" v-for="(item, index) in task.label" :key="index">{{ item }}</van-tag>
+              {{ new Date(task.alarmTime).toLocaleString() }}
             </div>
           </van-cell>
         </div>
@@ -88,6 +89,9 @@ export default Vue.extend({
     .van-cell__title {
       flex: 4;
     }
+  }
+  .van-cell__title, .van-cell__value {
+    flex: 2;
   }
   .van-panel__footer.van-hairline--top::after {
     opacity: 0;

@@ -6,12 +6,16 @@
     <van-cell title="提醒时间" :value="habit.alarmTime" is-link @click="onHabitAlarmTimeClick" />
     <van-cell title="提醒日期" is-link @click="onHabitAlarmDateClick">
       <div slot="label">
-        <van-tag v-for="item in habit.alarmDate" class="date-tag" type="primary" :key="item">星期{{ item }}</van-tag>
+        <van-tag v-for="item in habit.alarmDate" class="habit-label" type="primary" :key="item">星期{{ item }}</van-tag>
       </div>
     </van-cell>
-    <van-cell title="习惯标签" center value-class="habit-label-value">
+    <van-cell title="习惯标签" value-class="habit-label-value">
       <van-icon slot="right-icon" name="add-o" :size="20" @click="onAddHabitLabelClick" />
-      <van-tag type="primary" class="habit-label" mark v-for="item in habit.label" :key="item">{{ item }}</van-tag>
+      <div slot="label">
+        <van-tag type="primary" closeable class="habit-label" mark
+                 @close="onLabelCloseClick(item)"
+                 v-for="item in habit.label" :key="item">{{ item }}</van-tag>
+      </div>
     </van-cell>
     <van-button size="large" type="primary" class="position-bottom" @click="onCreateHabitClick">添加</van-button>
     <van-popup v-model="isAlarmTimePopup" round close-icon-position="top-left" position="bottom" closeable>
@@ -97,9 +101,10 @@ export default Vue.extend({
     async onCreateHabitClick () {
       try {
         const label = this.habit?.label?.join('#')
+        const alarmDate = this.habit?.alarmDate?.join('#')
         const msg = this.habit?.validate()
         if (msg) throw new ToastError(msg)
-        const res = await HabitModule.addHabit(Object.assign({}, this.habit, { label }))
+        const res = await HabitModule.addHabit(Object.assign({}, this.habit, { label, alarmDate }))
         Toast(res.code === RES_CODE.success ? '添加成功' : res.msg)
         if (res.code === RES_CODE.success) setTimeout(() => this.$router.back(), 2000)
       } catch (e) {
@@ -119,6 +124,9 @@ export default Vue.extend({
       if (this.habit.alarmDate.includes(item)) {
         this.habit.alarmDate = this.habit.alarmDate.filter(tag => tag !== item)
       } else this.habit.alarmDate.push(item)
+    },
+    onLabelCloseClick (e: string) {
+      this.habit.label = this.habit.label.filter(item => item !== e)
     }
   },
   components: {
@@ -133,7 +141,8 @@ export default Vue.extend({
     text-align: left;
   }
   .habit-label {
-    margin-right: 0.1rem;
+    margin-right: 0.2rem;
+    margin-bottom: 0.2rem;
     &:last-child {
       margin-right: 1rem;
     }

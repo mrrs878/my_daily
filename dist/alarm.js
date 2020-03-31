@@ -1,11 +1,14 @@
 const MSG_TYPE = {
   alarm: 'alarm',
-  failed: 'failed',
+  taskFailed: 'taskFailed',
+  habitFailed: 'habitFailed',
   token: 'token',
   requestError: 'requestError',
-  taskChange: 'tasksChange',
+  tasksChange: 'tasksChange',
+  habitsChange: 'habitsChange',
   setRefreshRate: 'setRefreshRate'
 }
+const DAY_VIEWS = ['日', '一', '二', '三', '四', '五', '六']
 const MINUTE = 1000 * 60
 const HOUR = MINUTE * 60
 
@@ -18,7 +21,9 @@ const BASE_API = API.test
 const data = {
   token: '',
   tasks: [],
+  habits: [],
   alarmedTasks: [],
+  alarmedHabits: [],
   monitorId: -1
 }
 
@@ -54,20 +59,39 @@ function fetch (url, method) {
 function destroyMonitorTask () {
   clearInterval(data.monitorId)
 }
-function createMonitorTask (refreshRate) {
+function taskMonitor () {
+  if (data.tasks.length === 0) return
+  const task = data.tasks[0]
+  const diff = task.alarmTime - new Date().getTime()
+  if (diff <= 0) {
+    postMessage({ type: MSG_TYPE.taskFailed, msg: task })
+    data.alarmedTasks.push(task.ID)
+    data.tasks.shift()
+  } else if (diff <= HOUR && !data.alarmedTasks.includes(task.ID)) {
+    postMessage({ type: MSG_TYPE.alarm, msg: `请注意${task.title}任务` })
+    data.alarmedTasks.push(task.ID)
+    data.tasks.shift()
+  }
+}
+function habitMonitor () {
+  if (data.habits.length === 0) return
+  const habit = data.habits[0]
+  const currentDate = new Date()
+  const diff = new Date(`${currentDate.toLocaleDateString()} ${habit.alarmTime}`) - currentDate
+  if (diff <= 0) {
+    postMessage({ type: MSG_TYPE.habitFailed, msg: habit })
+    data.alarmedHabits.push(habit.ID)
+    data.habits.shift()
+  } else if (diff <= HOUR && !data.alarmedHabits.includes(habit.ID)) {
+    postMessage({ type: MSG_TYPE.alarm, msg: `请注意${habit.title}习惯` })
+    data.alarmedHabits.push(habit.ID)
+    data.habits.shift()
+  }
+}
+function createMonitor (refreshRate) {
   data.monitorId = setInterval(() => {
-    if (data.tasks.length === 0) return
-    const diff = data.tasks[0].alarmTime - new Date().getTime()
-    if (diff <= 0) {
-      postMessage({ type: MSG_TYPE.alarm, msg: `${data.tasks[0].title}任务已过期` })
-      postMessage({ type: MSG_TYPE.failed, msg: data.tasks[0] })
-      data.alarmedTasks.push(data.tasks[0].ID)
-      data.tasks.shift()
-    } else if (diff <= HOUR && !data.alarmedTasks.includes(data.tasks[0].ID)) {
-      postMessage({ type: MSG_TYPE.alarm, msg: `请注意${data.tasks[0].title}任务` })
-      data.alarmedTasks.push(data.tasks[0].ID)
-      data.tasks.shift()
-    }
+    taskMonitor()
+    habitMonitor()
   }, refreshRate)
 }
 
@@ -81,14 +105,21 @@ const ON_MSG_HANDLERS = {
     // }
     // data.tasks = res.data
   },
-  [MSG_TYPE.taskChange] (tasks) {
+  [MSG_TYPE.tasksChange] (tasks) {
     const tmp = tasks.filter(item => (item.status === 0 || item.status === 1))
     data.tasks = tmp.sort((item1, item2) => item1.alarmTime < item2.alarmTime)
-    if (data.tasks.length === 0) destroyMonitorTask()
   },
   [MSG_TYPE.setRefreshRate] (rate) {
     destroyMonitorTask()
-    createMonitorTask(rate)
+    createMonitor(rate)
+  },
+  [MSG_TYPE.habitsChange] (habits) {
+    const tmp = habits.filter(item => {
+      const dates = item.alarmDate.split('#')
+      const day = DAY_VIEWS[new Date().getDay()]
+      return ((item.status === 0 || item.status === 1) && dates.includes(day))
+    })
+    data.habits = tmp.sort((item1, item2) => item1.alarmTime < item2.alarmTime)
   }
 }
 
@@ -99,4 +130,4 @@ function onMessage (e) {
 }
 
 onmessage = onMessage
-createMonitorTask(MINUTE)
+createMonitor(MINUTE)

@@ -3,7 +3,7 @@
     <van-nav-bar left-text="登录" left-arrow @click-left="onNavBarClickLeft" />
     <div class="login-info-container">
       <van-field v-model="name" clearable placeholder="请输入账号" />
-      <van-field v-model="password" type="password" clearable autosize placeholder="请输入密码" />
+      <van-field v-model="password" type="password" clearable placeholder="请输入密码" />
       <br>
       <div class="auth-action-container padding-h">
         <span @click="onAuthActionClick('forgetPwd')">忘记密码?</span>
@@ -15,6 +15,7 @@
     </div>
     <div class="login-helpers">
       <img src="../../assets/img/github.svg" class="login-type" @click="onGithubLoginClick" alt="">
+      <img src="../../assets/img/wechat.svg" class="login-type" @click="onWeChatLoginClick" alt="">
     </div>
   </div>
 </template>
@@ -53,7 +54,8 @@ export default Vue.extend({
     },
     onGithubLoginClick () {
       window.location.href = 'https://github.com/login/oauth/authorize?client_id=7b961b417e4b3fc83488&scope=user,public_repo'
-    }
+    },
+    onWeChatLoginClick () {}
   }
 })
 </script>
@@ -69,11 +71,19 @@ export default Vue.extend({
     color: #1683f0;
   }
   .login-helpers {
-    margin-top: 2.5rem;
     text-align: center;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    margin: 2.5rem auto 0;
     .login-type {
       height: 0.8rem;
       width: 0.8rem;
+      margin: 0 0.25rem;
+      &:nth-child(2) {
+        height: 1rem;
+        width: 1rem;
+      }
     }
   }
 </style>

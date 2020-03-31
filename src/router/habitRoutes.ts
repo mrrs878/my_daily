@@ -2,6 +2,7 @@ import { RouteConfig } from 'vue-router'
 
 const Habit = () => import('@/views/habit/Habit.vue')
 const AddHabit = () => import('@/views/habit/AddHabit.vue')
+const HabitDetail = () => import('@/views/habit/HabitDetail.vue')
 const BASE_PATH = '/habit'
 
 const HABIT_ROUTES_MAP = {
@@ -20,6 +21,11 @@ const HABIT_ROUTES: Array<RouteConfig> = [
     name: 'addHabit',
     path: HABIT_ROUTES_MAP.addHabit,
     component: AddHabit
+  },
+  {
+    name: 'habitDetail',
+    path: `${HABIT_ROUTES_MAP.habitDetail}/:id`,
+    component: HabitDetail
   }
 ]
 

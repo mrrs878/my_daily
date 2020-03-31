@@ -4,9 +4,13 @@
     <van-field v-model="task.title" clearable label="任务名称" placeholder="请输入任务名称" @input="onTaskTitleInput" />
     <van-field v-model="task.detail" clearable label="任务详情" autosize type="textarea" placeholder="请输入任务详情" @input="onTaskDetailInput" />
     <van-cell title="提醒时间" :value="new Date(task.alarmTime).toLocaleString()" is-link @click="onTaskAlarmClick" />
-    <van-cell title="任务标签" center value-class="task-label-value">
+    <van-cell title="任务标签" value-class="task-label-value">
       <van-icon slot="right-icon" name="add-o" :size="20" @click="onAddTaskLabelClick" />
-      <van-tag type="primary" class="task-label" mark v-for="item in task.label" :key="item">{{ item }}</van-tag>
+      <div slot="label">
+        <van-tag type="primary" closeable class="task-label" mark
+                 @close="onLabelCloseClick(item)"
+                 v-for="item in task.label" :key="item">{{ item }}</van-tag>
+      </div>
     </van-cell>
     <van-button size="large" type="primary" class="position-bottom" @click="onCreateTaskClick">添加</van-button>
     <van-popup v-model="isAlarmTimePopup" round close-icon-position="top-left" position="bottom" closeable>
@@ -101,6 +105,9 @@ export default Vue.extend({
       this.isLabelPopup = false
       this.task.label.push(this.taskLabel)
       this.taskLabel = ''
+    },
+    onLabelCloseClick (e: string) {
+      this.task.label = this.task.label.filter(item => item !== e)
     }
   },
   components: {

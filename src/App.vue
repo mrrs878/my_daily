@@ -13,8 +13,10 @@ import userModule from '@/module/user'
 import { initWorkers } from '@/worker'
 import { postMessage } from '@/worker/alarm'
 import { mapState } from 'vuex'
-import { TaskI } from '@/interface/model'
+import { HabitI, TaskI } from '@/interface/model'
 import { MSG_TYPE } from '@/constant'
+import ws from '@/util/ws'
+import { wsMsgHandlers } from '@/module/message'
 
 export default Vue.extend({
   name: 'App',
@@ -22,14 +24,27 @@ export default Vue.extend({
     userModule.getUserInfo()
     initWorkers()
   },
+  mounted (): void {
+    if (this.user.ID === -1) return
+    ws.setup(this.user.ID, wsMsgHandlers)
+  },
+  beforeDestroy (): void {
+    ws.close()
+  },
   components: { MFooter },
   computed: {
-    ...mapState(['tasks'])
+    ...mapState(['tasks', 'habits', 'user'])
   },
   watch: {
     tasks: {
       handler (newVal) {
         postMessage<Array<TaskI>>({ type: MSG_TYPE.tasksChange, msg: newVal })
+      },
+      deep: true
+    },
+    habits: {
+      handler (newVal) {
+        postMessage<Array<HabitI>>({ type: MSG_TYPE.habitsChange, msg: newVal })
       },
       deep: true
     }

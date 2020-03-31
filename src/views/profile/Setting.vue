@@ -3,7 +3,7 @@ import { MSG_TYPE } from '@/constant'
   <div class="container">
     <van-nav-bar left-text="设置" left-arrow @click-left="onNavBarClickLeft" />
     <van-cell title="更新缓存" is-link @click="onCleanCacheClick" />
-    <van-cell title="任务提醒灵敏度" value="1min" is-link @click="onSetRefreshRateCellClick" />
+    <van-cell title="提醒灵敏度" value="1min" is-link @click="onSetRefreshRateCellClick" />
     <br>
     <br>
     <van-button type="primary" size="large" @click="onLogoutClick">退出登录</van-button>

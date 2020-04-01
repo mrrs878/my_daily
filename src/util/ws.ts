@@ -4,15 +4,16 @@ function onOpen (e: Event) {
   console.log('created socket connected', e)
 }
 function onMsg (msg: MessageEvent, handlers: ObjectKeyValue<Function>) {
-  const reader = new FileReader()
-  reader.onload = () => {
-    if (typeof reader.result === "string") {
-      const { label, data } = JSON.parse(reader.result)
-      handlers[label](data)
-      console.log('received socket msg: ', JSON.parse(reader.result))
+  const msgReader = new FileReader()
+  msgReader.onload = () => {
+    if (typeof msgReader.result === 'string') {
+      console.log('received socket msg: ', JSON.parse(msgReader.result))
+      const { label, data } = JSON.parse(msgReader.result)
+      const cb = handlers[label]
+      cb && cb(data)
     }
   }
-  reader.readAsText(msg.data)
+  msgReader.readAsText(msg.data)
 }
 function onClose (e: CloseEvent) {
   console.log('closed socket connected: ', e)
@@ -35,5 +36,8 @@ export default {
   },
   close () {
     ws.close()
+  },
+  sendMsg (msg: { label: string; data: string }) {
+    ws.send(JSON.stringify(msg))
   }
 }

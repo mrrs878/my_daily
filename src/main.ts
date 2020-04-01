@@ -5,13 +5,13 @@ import store from './store'
 import './registerServiceWorker'
 
 import VConsole from 'vconsole'
-import { Button, Cell, Checkbox, Icon, NavBar, Field, Popup, Dialog, CellGroup, Skeleton, PullRefresh, Picker } from 'vant'
+import { Button, Cell, Checkbox, Icon, NavBar, Field, Popup, Dialog, CellGroup, Skeleton, PullRefresh, Picker, SwipeCell } from 'vant'
 import { longPress } from './plugins/directive'
 import Log from '@/plugins/log'
 
 Vue.config.productionTip = false
 Vue.use(Button).use(Cell).use(Checkbox).use(Icon).use(NavBar).use(Field).use(Popup).use(Dialog)
-  .use(CellGroup).use(Skeleton).use(PullRefresh).use(Picker)
+  .use(CellGroup).use(Skeleton).use(PullRefresh).use(Picker).use(SwipeCell)
 Vue.use(Log)
 Vue.directive('longPress', longPress)
 

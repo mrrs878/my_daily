@@ -12,7 +12,7 @@
         <van-icon :name="props.active ? 'award' : 'award-o'" />
       </template>
     </van-tabbar-item>
-    <van-tabbar-item name="profile" icon="user-o" :badge="message.length" :class="{ 'badge': message.length === 0 }">
+    <van-tabbar-item name="profile" icon="user-o" :badge="msgCnt" :class="{ 'badge': msgCnt === 0 }">
       我的
       <template #icon="props">
         <van-icon :name="props.active ? 'manager' : 'user-o'" />
@@ -28,6 +28,7 @@ import { TabbarItem, Tabbar } from 'vant'
 import { ROUTES_MAP } from '@/router'
 import layout from '@/layout'
 import { mapState } from 'vuex'
+import { MessageI } from '@/interface/model'
 
 enum FOOTER_ROUTES {
   task = 'task',
@@ -56,7 +57,11 @@ export default Vue.extend({
     isFooter () {
       return layout.FOOTER_PAGES.includes(this.$route.path)
     },
-    ...mapState(['message'])
+    ...mapState(['message']),
+    msgCnt () {
+      const tmp = this.message.filter((item: MessageI) => item.status === 0)
+      return tmp.length
+    }
   },
   components: {
     'van-tabbar': Tabbar,

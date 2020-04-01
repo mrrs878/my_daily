@@ -2,8 +2,8 @@
   <div class="container">
     <van-nav-bar left-text="登录" left-arrow @click-left="onNavBarClickLeft" />
     <div class="login-info-container">
-      <van-field v-model="name" clearable placeholder="请输入账号" />
-      <van-field v-model="password" type="password" clearable placeholder="请输入密码" />
+      <van-field v-model="name" clearable placeholder="账号" />
+      <van-field v-model="password" type="password" clearable placeholder="密码" />
       <br>
       <div class="auth-action-container padding-h">
         <span @click="onAuthActionClick('forgetPwd')">忘记密码?</span>

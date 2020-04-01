@@ -4,6 +4,7 @@ const Profile = () => import('@/views/profile/Profile.vue')
 const About = () => import('@/views/profile/About.vue')
 const AnalysisChart = () => import('@/views/profile/AnalysisChart.vue')
 const Setting = () => import('@/views/profile/Setting.vue')
+const MessageCenter = () => import('@/views/profile/MessageCenter.vue')
 const BASE_PATH = '/profile'
 
 const PROFILE_ROUTES_MAP = {
@@ -11,7 +12,8 @@ const PROFILE_ROUTES_MAP = {
   userInfo: `${BASE_PATH}/userInfo`,
   analysisChart: `${BASE_PATH}/analysisChart`,
   setting: `${BASE_PATH}/setting`,
-  about: `${BASE_PATH}/about`
+  about: `${BASE_PATH}/about`,
+  messageCenter: `${BASE_PATH}/messageCenter`
 }
 
 const PROFILE_ROUTES: Array<RouteConfig> = [
@@ -34,6 +36,11 @@ const PROFILE_ROUTES: Array<RouteConfig> = [
     name: 'setting',
     path: PROFILE_ROUTES_MAP.setting,
     component: Setting
+  },
+  {
+    name: 'MessageCenter',
+    path: PROFILE_ROUTES_MAP.messageCenter,
+    component: MessageCenter
   }
 ]
 

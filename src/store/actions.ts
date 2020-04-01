@@ -13,7 +13,9 @@ export enum ACTIONS_E {
   updateUser = 'updateUser',
   updateMsgCnt = 'updateMsgCnt',
   addMessage = 'addMessage',
-  updateMessages = 'updateMessages'
+  updateMessages = 'updateMessages',
+  updateMessage = 'updateMessage',
+  delMessage = 'delMessage'
 }
 
 const taskActions: ActionTree<StateI, StateI> = {
@@ -45,9 +47,9 @@ const taskActions: ActionTree<StateI, StateI> = {
   },
   [ACTIONS_E.updateHabit] ({ commit, state }, payload) {
     const index = state.habits.findIndex(item => item.ID === payload.ID)
-    const tasks = [...state.habits]
-    tasks[index] = payload
-    commit(MUTATIONS_E.updateHabits, tasks)
+    const habits = [...state.habits]
+    habits[index] = payload
+    commit(MUTATIONS_E.updateHabits, habits)
   },
   [ACTIONS_E.updateHabits] ({ commit }, payload) {
     commit(MUTATIONS_E.updateHabits, payload)
@@ -61,6 +63,16 @@ const taskActions: ActionTree<StateI, StateI> = {
   [ACTIONS_E.addMessage] ({ commit, state }, payload) {
     const message = [...state.message]
     message.push(payload)
+    commit(MUTATIONS_E.updateMessages, message)
+  },
+  [ACTIONS_E.updateMessage] ({ commit, state }, payload) {
+    const index = state.message.findIndex(item => item.ID === payload.ID)
+    const message = [...state.message]
+    message[index] = payload
+    commit(MUTATIONS_E.updateMessages, message)
+  },
+  [ACTIONS_E.delMessage] ({ commit, state }, payload) {
+    const message = state.message.filter(item => item.ID !== payload)
     commit(MUTATIONS_E.updateMessages, message)
   }
 }

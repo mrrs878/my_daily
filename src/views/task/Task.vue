@@ -1,6 +1,6 @@
 <template>
   <div class="container footer">
-    <van-pull-refresh v-model="isLoading" @refresh="onTaskRefresh">
+    <van-pull-refresh v-model="isLoading" @refresh="onTaskRefresh" :disabled="user.token === ''">
       <div style="overflow: scroll">
         <van-swipe-cell class="task-cell" v-for="(item, index) in tasks" :key="item.ID"
                         :disabled="item.status === TASK_STATUS.cancel || item.status === TASK_STATUS.failed"
@@ -26,7 +26,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { Panel, SwipeCell, Toast, Calendar, Dialog } from 'vant'
+import { Panel, Toast, Dialog } from 'vant'
 import TaskModule from '@/module/task'
 import { RES_CODE, TASK_STATUS, UPDATE_MSG } from '@/constant'
 import { ROUTES_MAP } from '@/router'
@@ -87,12 +87,10 @@ export default Vue.extend({
     this.getTasks()
   },
   components: {
-    [Panel.name]: Panel,
-    [SwipeCell.name]: SwipeCell,
-    [Calendar.name]: Calendar
+    [Panel.name]: Panel
   },
   computed: {
-    ...mapState(['tasks'])
+    ...mapState(['tasks', 'user'])
   }
 })
 </script>

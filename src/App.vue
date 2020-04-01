@@ -47,6 +47,13 @@ export default Vue.extend({
         postMessage<Array<HabitI>>({ type: MSG_TYPE.habitsChange, msg: newVal })
       },
       deep: true
+    },
+    'user.token': {
+      handler (newVal) {
+        if (newVal === '') return
+        ws.setup(this.user.ID, wsMsgHandlers)
+      },
+      deep: true
     }
   }
 })

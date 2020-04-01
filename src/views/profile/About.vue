@@ -17,7 +17,7 @@
         <van-checkbox v-model="checked" disabled shape="square">Github登录(OAuth)</van-checkbox>
       </van-cell>
       <van-cell>
-        <van-checkbox v-model="checked" disabled shape="square">任务/习惯增、删、改、查</van-checkbox>
+        <van-checkbox v-model="checked" disabled shape="square">任务/习惯增、删、改、查(gorm)(未分页)</van-checkbox>
       </van-cell>
       <van-cell>
         <van-checkbox v-model="checked" disabled shape="square">任务/习惯完成情况图表分析(ECharts)</van-checkbox>

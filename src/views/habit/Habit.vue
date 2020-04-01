@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <van-pull-refresh v-model="isLoading" @refresh="onHabitRefresh">
+    <van-pull-refresh v-model="isLoading" @refresh="onHabitRefresh" :disabled="user.token === ''">
       <div style="overflow: scroll">
         <van-swipe-cell class="task-cell" v-for="(item, index) in habits" :key="item.ID"
                         :disabled="item.status === HABIT_STATUS.cancel || item.status === HABIT_STATUS.failed"
@@ -30,7 +30,7 @@ import { ROUTES_MAP } from '@/router'
 import { mapState } from 'vuex'
 import HabitModule from '@/module/habit'
 import { RES_CODE, HABIT_STATUS, UPDATE_MSG } from '@/constant'
-import { Calendar, Dialog, Panel, SwipeCell, Toast } from 'vant'
+import { Dialog, Panel, Toast } from 'vant'
 
 export default Vue.extend({
   name: 'habit',
@@ -80,12 +80,10 @@ export default Vue.extend({
     this.getHabits()
   },
   components: {
-    [Panel.name]: Panel,
-    [SwipeCell.name]: SwipeCell,
-    [Calendar.name]: Calendar
+    [Panel.name]: Panel
   },
   computed: {
-    ...mapState(['habits'])
+    ...mapState(['habits', 'user'])
   }
 })
 </script>

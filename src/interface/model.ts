@@ -32,5 +32,10 @@ export interface HabitI extends BaseModelI {
   validate: (...params: Array<any>) => string;
 }
 
-export interface MessageI extends BaseModelI{
+export interface MessageI extends BaseModelI {
+  title: string;
+  label: Array<string>;
+  detail: string;
+  status: number;
+  userId: number;
 }

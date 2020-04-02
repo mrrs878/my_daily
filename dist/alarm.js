@@ -65,7 +65,6 @@ function taskMonitor () {
   const diff = task.alarmTime - new Date().getTime()
   if (diff <= 0) {
     postMessage({ type: MSG_TYPE.taskFailed, msg: task })
-    data.alarmedTasks.push(task.ID)
     data.tasks.shift()
   } else if (diff <= HOUR && !data.alarmedTasks.includes(task.ID)) {
     postMessage({ type: MSG_TYPE.alarm, msg: `请注意${task.title}任务` })

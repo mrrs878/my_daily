@@ -15,8 +15,7 @@ export const TASK_STATUS_VIEW = {
 
 export enum ENVS {
   test = 'test',
-  dev = 'dev',
-  prod = 'prod'
+  dev = 'dev'
 }
 
 export enum RES_CODE {
@@ -25,10 +24,13 @@ export enum RES_CODE {
 }
 
 export enum BASE_APIS {
-  // test = 'http://192.168.2.146:9090',
   test = 'http://localhost:9090',
-  dev = 'https://api.p18c.top',
-  prod = ''
+  dev = 'https://api.p18c.top'
+}
+
+export enum BASE_WS_APIS {
+  test = 'ws://localhost:9090',
+  dev = 'ws://api.p18c.top',
 }
 
 export const UPDATE_MSG = {

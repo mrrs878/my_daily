@@ -2,7 +2,7 @@
 
 workbox.core.setCacheNameDetails({
   prefix: 'my-daily',
-  suffix: 'v1.0.0'
+  suffix: 'v0.0.1'
 })
 
 workbox.precaching.precacheAndRoute(self.__precacheManifest || [])

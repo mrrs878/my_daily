@@ -1,7 +1,11 @@
-import { initAlarmWorker } from './alarm'
+import { initAlarmWorker, closeAlarmWorker } from './alarm'
 
 function initWorkers () {
   initAlarmWorker()
 }
 
-export { initWorkers }
+function closeWorkers () {
+  closeAlarmWorker()
+}
+
+export { initWorkers, closeWorkers }

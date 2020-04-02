@@ -26,7 +26,7 @@
         <van-checkbox v-model="checked" disabled shape="square">提醒功能(Web Workers)</van-checkbox>
       </van-cell>
       <van-cell>
-        <van-checkbox v-model="checked" disabled shape="square">离线消息推送(service worker)(仅PC端)</van-checkbox>
+        <van-checkbox v-model="checked" disabled shape="square">离线访问能力(service worker)</van-checkbox>
       </van-cell>
       <van-cell>
         <van-checkbox v-model="checked" disabled shape="square">在线消息推送(Websockets)</van-checkbox>

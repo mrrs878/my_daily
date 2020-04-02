@@ -65,6 +65,10 @@ export function initAlarmWorker () {
   }
 }
 
+export function closeAlarmWorker () {
+  worker && worker.terminate()
+}
+
 export async function alarm () {
   await showNotification('时间到了~')
 }

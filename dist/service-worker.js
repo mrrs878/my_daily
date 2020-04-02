@@ -1,10 +1,10 @@
-importScripts("/precache-manifest.d292b3b6a8c2d9aa4bfe6cea27c51301.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts("/precache-manifest.2b3560f90699d9f9bff68305cdede461.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 /* eslint-disable */
 
 workbox.core.setCacheNameDetails({
   prefix: 'my-daily',
-  suffix: 'v1.0.0'
+  suffix: 'v0.0.1'
 })
 
 workbox.precaching.precacheAndRoute(self.__precacheManifest || [])

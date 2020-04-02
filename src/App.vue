@@ -10,7 +10,7 @@ import { MSG_TYPE } from '@/constant'
 import Vue from 'vue'
 import MFooter from '@/components/MFooter.vue'
 import userModule from '@/module/user'
-import { initWorkers } from '@/worker'
+import { initWorkers, closeWorkers } from '@/worker'
 import { postMessage } from '@/worker/alarm'
 import { mapState } from 'vuex'
 import { HabitI, TaskI } from '@/interface/model'
@@ -22,13 +22,9 @@ export default Vue.extend({
   name: 'App',
   created (): void {
     userModule.getUserInfo()
-    initWorkers()
-  },
-  mounted (): void {
-    if (this.user.ID === -1) return
-    ws.setup(this.user.ID, wsMsgHandlers)
   },
   beforeDestroy (): void {
+    closeWorkers()
     ws.close()
   },
   components: { MFooter },
@@ -50,8 +46,13 @@ export default Vue.extend({
     },
     'user.token': {
       handler (newVal) {
-        if (newVal === '') return
-        ws.setup(this.user.ID, wsMsgHandlers)
+        if (newVal === '') {
+          closeWorkers()
+          ws.close()
+        } else {
+          initWorkers()
+          ws.setup(this.user.ID, wsMsgHandlers)
+        }
       },
       deep: true
     }

@@ -1,3 +1,5 @@
+import { BASE_WS_API } from '@/api'
+
 let ws: WebSocket
 
 function onOpen (e: Event) {
@@ -25,7 +27,7 @@ function onError (e: Event) {
 export default {
   setup (channel: string, handlers: ObjectKeyValue<Function>) {
     try {
-      ws = new WebSocket(`ws://localhost:9090/msg/${channel}`)
+      ws = new WebSocket(`${BASE_WS_API}/msg/${channel}`)
     } catch (e) {
       console.log('setup websocket error: ', e)
     }

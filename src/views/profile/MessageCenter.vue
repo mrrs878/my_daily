@@ -27,6 +27,7 @@ import Vue from 'vue'
 import { mapState } from 'vuex'
 import { Toast } from 'vant'
 import ws from '@/util/ws'
+import { MessageI } from '@/interface/model'
 
 export default Vue.extend({
   name: 'messageCenter',
@@ -60,7 +61,8 @@ export default Vue.extend({
   computed: {
     ...mapState(['message', 'user']),
     rightText () {
-      return this.message.length === 0 ? '' : '全部已读'
+      const tmp = this.message.filter((item: MessageI) => item.status === 0)
+      return tmp.length === 0 ? '' : '全部已读'
     }
   }
 })

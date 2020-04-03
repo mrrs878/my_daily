@@ -30,7 +30,7 @@ export enum BASE_APIS {
 
 export enum BASE_WS_APIS {
   test = 'ws://localhost:9090',
-  dev = 'ws://api.p18c.top',
+  dev = 'wss://api.p18c.top',
 }
 
 export const UPDATE_MSG = {

@@ -26,7 +26,7 @@ if ('serviceWorker' in window.navigator) {
         console.log('register error', e, e.message)
       }
       console.log(
-        'App is being served from cache by a worker worker.\n' +
+        'App is being served from cache by a worker.\n' +
         'For more details, visit https://goo.gl/AFskqB'
       )
     },

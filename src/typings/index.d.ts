@@ -2,6 +2,7 @@ type ObjectKeyValue<T> = { [propName: string]: T }
 type ModuleRes = { code: number; msg: string }
 
 interface workBoxI {
+  setConfig: Function,
   core: {
     setCacheNameDetails: Function
   };
@@ -12,7 +13,11 @@ interface workBoxI {
     registerRoute: Function
   };
   strategies: {
-    NetworkFirst: Function
+    NetworkFirst: Function,
+    CacheFirst: Function
+  },
+  expiration: {
+    ExpirationPlugin: Function
   }
 }
 declare var workbox: workBoxI
